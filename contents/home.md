@@ -1,4 +1,4 @@
-[![XX](https://img.shields.io/badge/XX-github-blue?logo=github)](https://github.com/XX)
+[![刘懿逸](https://img.shields.io/badge/刘懿逸-github-blue?logo=github)](https://github.com/yiyiliu0415)
 
 我目前就读于华南师范大学，是光电科学与工程学院光学工程专业的一名硕士研究生，主要研究方向为计算成像、散射介质成像、波前整形。
 
