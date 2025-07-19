@@ -1,0 +1,24 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- 可爱的鼠标指针 -->
+  <defs>
+    <linearGradient id="cursorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff9a9e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fecfef;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="1" stdDeviation="1" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+  
+  <!-- 主体箭头 -->
+  <path d="M4 4 L4 24 L12 16 L18 20 L22 16 L12 12 Z" 
+        fill="url(#cursorGradient)" 
+        stroke="#fff" 
+        stroke-width="1" 
+        filter="url(#shadow)"/>
+  
+  <!-- 可爱的小心形装饰 -->
+  <path d="M6 6 C6 5, 7 4, 8 5 C9 4, 10 5, 10 6 C10 7, 8 9, 8 9 C8 9, 6 7, 6 6 Z" 
+        fill="#ff6b9d" 
+        opacity="0.8"/>
+</svg>

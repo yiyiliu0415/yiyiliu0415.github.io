@@ -1,0 +1,1243 @@
+/* 游戏选择器样式 */
+.game-selector-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.game-selector-window {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+}
+
+.game-selector-header {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.game-selector-title {
+    color: white;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.game-selector-content {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.game-option {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    backdrop-filter: blur(10px);
+}
+
+.game-option:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.game-option .game-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.game-option h3 {
+    color: white;
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.game-option p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Flappy Bird游戏样式 */
+.flappy-game-window {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 480px;
+    width: 90%;
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+}
+
+.flappy-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.flappy-game-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#flappy-canvas {
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: #87CEEB;
+}
+
+.flappy-game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.game-over-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6b6b;
+    margin-bottom: 10px;
+}
+
+.flappy-final-score {
+    font-size: 18px;
+    color: #74b9ff;
+    margin-bottom: 15px;
+}
+
+.flappy-start-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.start-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #74b9ff;
+}
+
+.start-instruction {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+}
+
+/* 响应式设计 */
+/* 贪吃蛇游戏样式 */
+.snake-game-window {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 480px;
+    width: 90%;
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+}
+
+.snake-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.snake-game-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#snake-canvas {
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: #2c3e50;
+    border: 2px solid #34495e;
+}
+
+.snake-game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.snake-final-score {
+    font-size: 18px;
+    color: #27ae60;
+    margin-bottom: 15px;
+}
+
+.snake-start-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    .game-selector-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .game-option {
+        padding: 20px;
+    }
+    
+    .game-option .game-icon {
+        font-size: 36px;
+    }
+    
+    .game-selector-title {
+        font-size: 20px;
+    }
+    
+    #flappy-canvas {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+    
+    .flappy-game-window {
+        width: 95%;
+    }
+    
+    .snake-game-window {
+        width: 95%;
+    }
+    
+    #snake-canvas {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+    
+    .snake-info {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .snake-game-over,
+    .snake-start-screen {
+        padding: 20px;
+        font-size: 14px;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 游戏按钮样式增强 */
+.game-btn {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(116, 185, 255, 0.3);
+}
+
+.game-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(116, 185, 255, 0.4);
+    background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+}
+
+.game-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(116, 185, 255, 0.3);
+}
+
+/* 关闭按钮样式 */
+.game-close {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* 分数容器样式 */
+.score-container {
+    text-align: center;
+}
+
+.score-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.score-value {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 俄罗斯方块游戏样式 */
+.tetris-game-window {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 520px;
+    width: 90%;
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+}
+
+.tetris-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tetris-game-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tetris-main {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.tetris-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#tetris-canvas {
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: #000000;
+    border: 2px solid #444444;
+}
+
+.tetris-next {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.next-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#tetris-next-canvas {
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: #000000;
+    border: 2px solid #444444;
+}
+
+.tetris-controls {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 120px;
+}
+
+.controls-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.control-item {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    padding: 3px 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.control-item:last-child {
+    border-bottom: none;
+}
+
+.tetris-game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.tetris-final-score {
+    font-size: 18px;
+    color: #9b59b6;
+    margin-bottom: 15px;
+}
+
+.tetris-start-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.tetris-start-screen .start-instruction {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+}
+
+.tetris-paused-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid #9b59b6;
+}
+
+.paused-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #9b59b6;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.paused-instruction {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 10px;
+}
+
+/* 俄罗斯方块响应式设计 */
+@media (max-width: 600px) {
+    .tetris-game-window {
+        width: 95%;
+    }
+    
+    .tetris-main {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .tetris-side {
+        flex-direction: row;
+        gap: 15px;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .tetris-controls {
+        min-width: 100px;
+        padding: 10px;
+    }
+    
+    .controls-title {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .control-item {
+        font-size: 12px;
+        padding: 2px 0;
+    }
+    
+    #tetris-canvas {
+        width: 250px;
+        height: 500px;
+    }
+    
+    .tetris-info {
+        padding: 10px 15px;
+        font-size: 14px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .tetris-game-over,
+    .tetris-start-screen,
+    .tetris-paused-screen {
+        padding: 20px;
+        font-size: 14px;
+    }
+    
+    .paused-text {
+        font-size: 20px;
+    }
+    
+    .paused-instruction {
+        font-size: 14px;
+    }
+    
+    .score-container {
+        min-width: 60px;
+    }
+    
+    .score-value {
+        font-size: 18px;
+    }
+}
+
+/* 数独游戏样式 */
+.sudoku-game-window {
+    background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 95%;
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+}
+
+.sudoku-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sudoku-game-area {
+    position: relative;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sudoku-main {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 1px;
+    background: #333;
+    border: 3px solid #333;
+    border-radius: 8px;
+    width: 360px;
+    height: 360px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.sudoku-cell {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333;
+    user-select: none;
+}
+
+.sudoku-cell:hover {
+    background: #e8f4fd;
+}
+
+.sudoku-cell.selected {
+    background: #74b9ff !important;
+    color: white;
+}
+
+.sudoku-cell.given {
+    background: #f8f9fa;
+    color: #2d3436;
+    font-weight: 900;
+    cursor: default;
+}
+
+.sudoku-cell.given:hover {
+    background: #f8f9fa;
+}
+
+.sudoku-cell.user-input {
+    background: #dff0d8;
+    color: #3c763d;
+}
+
+.sudoku-cell.error {
+    background: #f2dede !important;
+    color: #a94442 !important;
+}
+
+.sudoku-cell.border-top {
+    border-top: 2px solid #333;
+}
+
+.sudoku-cell.border-left {
+    border-left: 2px solid #333;
+}
+
+.sudoku-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 200px;
+}
+
+.sudoku-controls {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.sudoku-numbers {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.numbers-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.number-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.number-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.number-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.number-btn.clear-btn {
+    grid-column: span 3;
+    background: rgba(231, 76, 60, 0.8);
+    border-color: rgba(231, 76, 60, 1);
+}
+
+.number-btn.clear-btn:hover {
+    background: rgba(231, 76, 60, 1);
+}
+
+.sudoku-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sudoku-game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.sudoku-final-time {
+    font-size: 18px;
+    color: #e17055;
+    margin-bottom: 15px;
+}
+
+.sudoku-start-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.difficulty-btn {
+    background: rgba(225, 112, 85, 0.8);
+    border: 2px solid rgba(225, 112, 85, 1);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.difficulty-btn:hover {
+    background: rgba(225, 112, 85, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 数独响应式设计 */
+@media (max-width: 768px) {
+    .sudoku-game-window {
+        width: 98%;
+    }
+    
+    .sudoku-main {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .sudoku-grid {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .sudoku-cell {
+        font-size: 16px;
+    }
+    
+    .sudoku-side {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .sudoku-controls,
+    .sudoku-numbers {
+        padding: 12px;
+    }
+    
+    .number-buttons {
+        gap: 6px;
+    }
+    
+    .number-btn {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+    .sudoku-info {
+        padding: 10px 15px;
+        font-size: 14px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .difficulty-buttons {
+        gap: 10px;
+    }
+    
+    .difficulty-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sudoku-grid {
+        width: 270px;
+        height: 270px;
+    }
+    
+    .sudoku-cell {
+        font-size: 14px;
+    }
+    
+    .sudoku-game-over,
+    .sudoku-start-screen {
+        padding: 20px;
+        font-size: 14px;
+    }
+    
+    .score-container {
+        min-width: 60px;
+    }
+    
+    .score-value {
+        font-size: 16px;
+    }
+}
+
+/* 数字华容道游戏样式 */
+.sliding-puzzle-game-window {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 95%;
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+}
+
+.sliding-puzzle-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sliding-puzzle-game-area {
+    position: relative;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sliding-puzzle-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.sliding-puzzle-grid {
+    display: grid;
+    gap: 4px;
+    background: #333;
+    border: 4px solid #333;
+    border-radius: 16px;
+    padding: 4px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.sliding-puzzle-cell {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: none;
+    border-radius: 12px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #2d3436;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    user-select: none;
+    min-height: 80px;
+    position: relative;
+}
+
+.sliding-puzzle-tile {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: none;
+    border-radius: 12px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #2d3436;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    user-select: none;
+    min-height: 80px;
+}
+
+.sliding-puzzle-cell:hover {
+    background: linear-gradient(135deg, #e8f4fd 0%, #d1ecf1 100%);
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.sliding-puzzle-cell.empty {
+    background: transparent;
+    box-shadow: none;
+    cursor: default;
+}
+
+.sliding-puzzle-cell.empty:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+
+
+.sliding-puzzle-tile:hover {
+    background: linear-gradient(135deg, #e8f4fd 0%, #d1ecf1 100%);
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.sliding-puzzle-tile.empty {
+    background: transparent;
+    box-shadow: none;
+    cursor: default;
+}
+
+.sliding-puzzle-tile.empty:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+.sliding-puzzle-controls {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.controls-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.control-item {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.sliding-puzzle-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.sliding-puzzle-game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.sliding-puzzle-final-stats {
+    font-size: 16px;
+    color: #74b9ff;
+    margin-bottom: 15px;
+}
+
+.sliding-puzzle-start-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.size-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.size-btn {
+    background: rgba(116, 185, 255, 0.8);
+    border: 2px solid rgba(116, 185, 255, 1);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.size-btn:hover {
+    background: rgba(116, 185, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 数字华容道响应式设计 */
+@media (max-width: 768px) {
+    .sliding-puzzle-game-window {
+        width: 98%;
+    }
+    
+    .sliding-puzzle-grid {
+        width: 350px;
+        height: 350px;
+    }
+    
+    .sliding-puzzle-cell,
+    .sliding-puzzle-tile {
+        font-size: 28px;
+        min-height: 70px;
+    }
+    
+    .sliding-puzzle-controls {
+        padding: 12px;
+    }
+    
+    .sliding-puzzle-actions {
+        gap: 8px;
+    }
+    
+    .sliding-puzzle-info {
+        padding: 10px 15px;
+        font-size: 14px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .size-buttons {
+        gap: 10px;
+    }
+    
+    .size-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sliding-puzzle-grid {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .sliding-puzzle-cell,
+    .sliding-puzzle-tile {
+        font-size: 24px;
+        min-height: 60px;
+    }
+    
+    .sliding-puzzle-game-over,
+    .sliding-puzzle-start-screen {
+        padding: 20px;
+        font-size: 14px;
+    }
+    
+    .score-container {
+        min-width: 60px;
+    }
+    
+    .score-value {
+        font-size: 16px;
+    }
+    
+    .sliding-puzzle-actions {
+        gap: 6px;
+    }
+    
+    .game-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}

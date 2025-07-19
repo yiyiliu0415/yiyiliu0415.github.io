@@ -1,0 +1,39 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- 可爱的文本选择指针 -->
+  <defs>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="1" stdDeviation="1" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+  
+  <!-- I型光标主体 -->
+  <rect x="15" y="6" width="2" height="20" 
+        fill="url(#textGradient)" 
+        filter="url(#shadow)"/>
+  
+  <!-- 上横线 -->
+  <rect x="12" y="6" width="8" height="2" 
+        fill="url(#textGradient)" 
+        filter="url(#shadow)"/>
+  
+  <!-- 下横线 -->
+  <rect x="12" y="24" width="8" height="2" 
+        fill="url(#textGradient)" 
+        filter="url(#shadow)"/>
+  
+  <!-- 可爱的小花装饰 -->
+  <circle cx="8" cy="8" r="2" fill="#ff9a9e" opacity="0.8"/>
+  <circle cx="6" cy="8" r="1" fill="#fecfef" opacity="0.9"/>
+  <circle cx="10" cy="8" r="1" fill="#fecfef" opacity="0.9"/>
+  <circle cx="8" cy="6" r="1" fill="#fecfef" opacity="0.9"/>
+  <circle cx="8" cy="10" r="1" fill="#fecfef" opacity="0.9"/>
+  
+  <!-- 小星星 -->
+  <path d="M24 24 L25 26 L27 26 L25.5 27.5 L26 30 L24 28.5 L22 30 L22.5 27.5 L21 26 L23 26 Z" 
+        fill="#ffd93d" 
+        opacity="0.8"/>
+</svg>

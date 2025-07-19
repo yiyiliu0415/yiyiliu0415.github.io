@@ -27,6 +27,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link type="text/css" href="static/css/styles.css" rel="stylesheet" />
     <link type="text/css" href="static/css/main.css" rel="stylesheet" />
+    <link type="text/css" href="static/css/game2048.css" rel="stylesheet" />
+    <link type="text/css" href="static/css/game-manager.css" rel="stylesheet" />
 
     <!-- Bootstrap core JS-->
     <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
@@ -76,12 +78,17 @@
     <!-- Core JS-->
     <script type="text/javascript" src="static/js/scripts.js"></script>
     <script type="text/javascript" src="static/js/js-yaml.min.js"></script>
+    <script type="text/javascript" src="static/js/game2048.js"></script>
+    <script type="text/javascript" src="static/js/game-manager.js"></script>
+
+    <!-- Live2D CSS -->
+    <link rel="stylesheet" href="static/css/live2d.css">
 
 </head>
 
 <body id="page-top">
     <!-- Navigation-->
-    <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+    <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm content-hidden" id="mainNav">
         <div class="container px-5">
             <a id="page-top-title" class="navbar-brand fw-bold" href="#page-top"></a>
             <!-- <a href="#page-top"><img src="static/assets/img/CUMT_LOGO.svg" style="width: 11rem;"></a> -->
@@ -104,13 +111,14 @@
                     <li class="nav-item">
                         <a class="nav-link me-lg-3" href="#publications">PUBLICATIONS</a>
                     </li>
+
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Top Section -->
-    <section class="top-section" style="background-image: url('static/assets/img/background.jpeg');">
+    <section class="top-section content-hidden">
         <div class="top-section-content">
             <div class="container px-5">
                 <h2 id="top-section-bg-text" class="text-white display-3 lh-1 font-alt"></h2>
@@ -120,7 +128,7 @@
     <!-- Top Section -->
 
     <!-- Photo -->
-    <div class="container px-5">
+    <div class="container px-5 content-hidden">
         <div id="avatar">
             <img class="shadow" src="static/assets/img/photo.png">
         </div>
@@ -128,7 +136,7 @@
     <!-- Photo -->
 
     <!-- Home -->
-    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="home">
+    <section class="bg-gradient-primary-to-secondary-light mt5 md5 content-hidden" id="home">
         <div class="container px-5">
             <header>
                 <h2 id="home-subtitle"> </h2>
@@ -140,7 +148,7 @@
     <!-- Home -->
 
     <!-- Awards -->
-    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="awards">
+    <section class="bg-gradient-primary-to-secondary-light mt5 md5 content-hidden" id="awards">
         <div class="container px-5">
             <header>
                 <h2 id="awards-subtitle"><i class="bi bi-award-fill"></i>AWARDS </h2>
@@ -152,7 +160,7 @@
     <!-- Awards -->
 
     <!-- Experience -->
-    <section class="bg-gradient-primary-to-secondary-dark mt5 md5" id="experience">
+    <section class="bg-gradient-primary-to-secondary-dark mt5 md5 content-hidden" id="experience">
         <div class="container px-5">
             <header>
                 <h2 id="experience-subtitle"><i class="bi bi-briefcase-fill"></i> EXPERIENCE </h2>
@@ -163,7 +171,7 @@
     <!-- Experience -->
 
     <!-- Publications -->
-    <section class="bg-gradient-primary-to-secondary-gray mt5 md5" id="publications">
+    <section class="bg-gradient-primary-to-secondary-gray mt5 md5 content-hidden" id="publications">
         <div class="container px-5">
             <header>
                 <h2 id="publications-subtitle"><i class="bi bi-file-text-fill"></i>&nbsp;PUBLICATIONS</h2>
@@ -175,10 +183,13 @@
     <!-- Publications  -->
 
     <!-- Footer-->
-    <footer class="bg-bottom text-center py-5">
+    <footer class="bg-bottom text-center py-5 content-hidden">
         <div class="container px-5">
             <div class="text-white-50 small">
                 <div id="copyright-text" class="mb-2"></div>
+                <div class="mb-2">
+                    <small>💡 小贴士：按 <kbd>B</kbd> 键进入背景欣赏模式 | 按 <kbd>N</kbd> 键切换背景图片 | 按 <kbd>T</kbd> 键切换鼠标轨迹</small>
+                </div>
                 <a id="github-link" href="https://github.com/senli1073">Github</a>
                 <span class="mx-1">&middot;</span>
                 <a id="license-link"
@@ -186,6 +197,53 @@
             </div>
         </div>
     </footer>
+
+    <!-- 背景模式提示 -->
+    <div class="bg-mode-tip">
+        🖼️ 背景欣赏模式 | 按 B 键退出
+    </div>
+
+    <!-- 2048游戏弹窗 -->
+    <!-- 游戏HTML结构已移至 game2048.js 模块 -->
+
+    <!-- Live2D Waifu HTML结构已移至 live2d-waifu.js 模块 -->
+
+    <!-- Live2D Scripts -->
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/live2d.js" onload="console.log('Live2D库加载完成')"
+        onerror="console.error('Live2D库加载失败')"></script>
+    <!-- waifu-tips.js 已被 live2d-waifu.js 模块替代，移除以避免事件冲突 -->
+    <script src="static/js/live2d-waifu.js" onload="console.log('Live2D Waifu模块加载完成')"
+        onerror="console.error('Live2D Waifu模块加载失败')"></script>
+
+    <!-- Live2D Functionality 已移至 live2d-waifu.js 模块 -->
+    <script>
+        // 简化的Live2D初始化逻辑
+        function initLive2D() {
+            if (window.Live2DWaifu) {
+                console.log('开始初始化Live2D看板娘');
+                Live2DWaifu.init();
+            } else {
+                console.log('等待Live2D模块加载...');
+                setTimeout(initLive2D, 200);
+            }
+        }
+
+        // 页面准备就绪时初始化
+        $(document).ready(function () {
+            initLive2D();
+        });
+
+        // 页面完全加载后确保初始化（防止强制刷新时的问题）
+        $(window).on('load', function () {
+            setTimeout(function () {
+                if (!document.getElementById('live2d')) {
+                    console.log('页面加载完成后重新初始化Live2D');
+                    initLive2D();
+                }
+            }, 500);
+        });
+    </script>
 
 </body>
 

@@ -1,0 +1,36 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- 可爱的手指指针 -->
+  <defs>
+    <linearGradient id="pointerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="1" stdDeviation="1" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+  
+  <!-- 手掌 -->
+  <ellipse cx="16" cy="20" rx="8" ry="6" 
+           fill="url(#pointerGradient)" 
+           stroke="#fff" 
+           stroke-width="1" 
+           filter="url(#shadow)"/>
+  
+  <!-- 食指 -->
+  <ellipse cx="16" cy="12" rx="3" ry="8" 
+           fill="url(#pointerGradient)" 
+           stroke="#fff" 
+           stroke-width="1" 
+           filter="url(#shadow)"/>
+  
+  <!-- 可爱的星星装饰 -->
+  <path d="M8 8 L9 10 L11 10 L9.5 11.5 L10 14 L8 12.5 L6 14 L6.5 11.5 L5 10 L7 10 Z" 
+        fill="#ffd93d" 
+        opacity="0.9"/>
+  
+  <!-- 小爱心 -->
+  <path d="M24 6 C24 5, 25 4, 26 5 C27 4, 28 5, 28 6 C28 7, 26 9, 26 9 C26 9, 24 7, 24 6 Z" 
+        fill="#ff6b9d" 
+        opacity="0.8"/>
+</svg>
