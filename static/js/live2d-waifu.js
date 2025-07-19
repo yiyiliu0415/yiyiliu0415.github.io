@@ -291,8 +291,8 @@
 
         // 定义本地背景图片的路径数组
         var backgrounds = [
-            'static/assets/img/background1.jpg',
-            'static/assets/img/background2.jpg'
+            'static/assets/img/background1.png',
+            'static/assets/img/background2.png'
         ];
 
         // 随机选择一张背景图片
