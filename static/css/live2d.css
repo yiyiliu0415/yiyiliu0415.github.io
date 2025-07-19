@@ -56,7 +56,7 @@
     color: #aaa;
     top: 50px;
     right: 10px;
-    font-size: 20px; /* 增大字体大小 */
+    font-size: 14px; /* 缩小字体大小 */
     position: absolute;
 }
 
@@ -68,8 +68,8 @@
     display: block;
     cursor: pointer;
     color: #5b6c7d;
-    line-height: 30px; /* 增大行高 */
-    margin-bottom: 5px; /* 增加间距 */
+    line-height: 20px; /* 缩小行高 */
+    margin-bottom: 3px; /* 减小间距 */
     transition: 0.2s;
 }
 
