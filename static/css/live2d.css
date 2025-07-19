@@ -70,6 +70,7 @@
     color: #5b6c7d;
     line-height: 20px;
     transition: 0.2s;
+    margin-bottom: 15px; /* 原来可能是10px，适当增大 */
 }
 
 .waifu-tool span:hover {
