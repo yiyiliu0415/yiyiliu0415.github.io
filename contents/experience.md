@@ -59,7 +59,7 @@
 
 **2022年6月 | 省级三等奖**
 负责手术刀追踪算法与拍摄臂控制算法的设计。
-**项目地址**: <https://github.com/yiyiliu0415/2022HeTai
+**项目地址**: https://github.com/yiyiliu0415/2022HeTai
 
 
 
