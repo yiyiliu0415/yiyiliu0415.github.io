@@ -210,49 +210,38 @@
         }
 
         isLoadingModel = true;
-        var modelId = localStorage.getItem('modelId') || 100;
-    
-        // 只在bilibili的22娘和33娘之间切换
-        var nextModelId = modelId == 100 ? 101 : 100;
-        
-        // 直接加载下一个模型，不使用API
-        isLoadingModel = false;
-        loadModel(nextModelId);
-        var message = nextModelId == 100 ? '来自 Bilibili Live 的 22 哦 ~' : '来自 Bilibili Live 的 33 的说';
-        showMessage(message, 3000, true);
-    }
+        var modelId = localStorage.getItem('modelId') || 1;
 
-    // 修改初始化模型函数
-    function initModel() {
-        // 确保Live2D库和canvas元素都已准备就绪
-        function waitForLive2D() {
-            var canvas = document.getElementById('live2d');
-            if (typeof loadlive2d !== 'undefined' && canvas) {
-                // 只使用bilibili的模型，100是22娘，101是33娘
-                var modelId = localStorage.getItem('modelId');
-                if (modelId != 100 && modelId != 101) {
-                    modelId = 100; // 默认使用22娘
+        $.ajax({
+            cache: false,
+            url: 'https://live2d.jixiaob.cn/switch/?id=' + modelId,
+            dataType: "json",
+            success: function (result) {
+                isLoadingModel = false; // 重置防抖标志
+                // 检查API响应是否有效
+                if (result && result.model && result.model.id !== undefined) {
+                    loadModel(result.model.id);
+                    showMessage(result.model.message || '新的朋友来了~', 3000, true);
+                } else {
+                    // API响应无效时的处理
+                    console.warn('Live2D切换模型API返回了无效的响应:', result);
+                    showMessage('切换模型失败，API响应异常', 3000, true);
+                    // 重新加载当前模型以防止模型消失
+                    var currentModelId = localStorage.getItem('modelId') || 1;
+                    var currentTexturesId = localStorage.getItem('modelTexturesId') || 0;
+                    loadModel(currentModelId, currentTexturesId);
                 }
-                var modelTexturesId = localStorage.getItem('modelTexturesId') || 0;
-                console.log('初始化Live2D模型，modelId:', modelId, 'texturesId:', modelTexturesId);
-    
-                // 确保canvas可见
-                canvas.style.display = 'block';
-                canvas.style.visibility = 'visible';
-    
-                // 立即加载模型，减少延迟
-                loadModel(modelId, modelTexturesId);
-            } else {
-                console.log('等待Live2D库和DOM元素加载...', {
-                    loadlive2d: typeof loadlive2d !== 'undefined',
-                    canvas: !!canvas
-                });
-                setTimeout(waitForLive2D, 200);
+            },
+            error: function (xhr, status, error) {
+                isLoadingModel = false; // 重置防抖标志
+                console.error('Live2D切换模型API请求失败:', error);
+                showMessage('切换模型失败，请稍后再试~', 3000, true);
+                // 重新加载当前模型以防止模型消失
+                var currentModelId = localStorage.getItem('modelId') || 1;
+                var currentTexturesId = localStorage.getItem('modelTexturesId') || 0;
+                loadModel(currentModelId, currentTexturesId);
             }
-        }
-    
-        // 减少初始延迟，提高响应速度
-        waitForLive2D();
+        });
     }
 
     // 重置到默认位置（右下角）
