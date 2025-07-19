@@ -582,23 +582,29 @@
     }
 
     // 初始化函数
+    // 初始化函数
+    // 初始化函数
     function init() {
-        injectWaifuHTML();
-        bindEvents();
-
-        $(document).ready(function () {
-            // 重置到默认位置
-            resetToDefaultPosition();
-
-            // 设置初始鼠标样式
-            $('.waifu').css('cursor', 'url(static/assets/img/cursor-grab.svg) 16 16, grab');
-
-            // 初始化欢迎消息
-            initWelcomeMessage();
-
-            // 初始化模型
-            initModel();
-        });
+    // 确保只初始化一次
+    if (document.getElementById('live2d')) {
+    console.log('Live2D已经初始化，跳过');
+    return;
+    }
+    
+    injectWaifuHTML();
+    bindEvents();
+    
+    // 重置到默认位置
+    resetToDefaultPosition();
+    
+    // 设置初始鼠标样式
+    $('.waifu').css('cursor', 'url(static/assets/img/cursor-grab.svg) 16 16, grab');
+    
+    // 初始化欢迎消息
+    initWelcomeMessage();
+    
+    // 初始化模型
+    initModel();
     }
 
     // 暴露公共API
