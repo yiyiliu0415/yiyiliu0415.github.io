@@ -56,8 +56,29 @@
     color: #aaa;
     top: 50px;
     right: 10px;
-    font-size: 14px; /* 缩小字体大小 */
+    font-size: 18px; /* 增大字体大小，原来是14px */
     position: absolute;
+}
+
+.waifu-tool span {
+    display: block;
+    cursor: pointer;
+    color: #5b6c7d;
+    line-height: 30px; /* 增大行高，原来是20px */
+    margin-bottom: 5px; /* 增大间距，原来是3px */
+    transition: 0.2s;
+    background-color: rgba(236, 217, 188, 0.5); /* 添加背景色 */
+    padding: 4px; /* 添加内边距 */
+    border-radius: 4px; /* 添加圆角 */
+    width: 30px; /* 设置固定宽度 */
+    height: 30px; /* 设置固定高度 */
+    text-align: center; /* 文本居中 */
+}
+
+.waifu-tool span:hover {
+    color: #34495e;
+    background-color: rgba(236, 217, 188, 0.8); /* 悬停时背景色加深 */
+    transform: scale(1.1); /* 悬停时轻微放大 */
 }
 
 .waifu:hover .waifu-tool {

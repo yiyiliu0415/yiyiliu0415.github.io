@@ -69,38 +69,44 @@
     }
 
     // 模型加载函数
+    // 模型加载函数
     function loadModel(modelId, modelTexturesId, retryCount) {
         if (retryCount === undefined) retryCount = 0;
-
+    
         if (typeof loadlive2d === 'function') {
             try {
                 localStorage.setItem('modelId', modelId);
                 if (modelTexturesId === undefined) modelTexturesId = 0;
                 localStorage.setItem('modelTexturesId', modelTexturesId);
-
+    
                 var modelUrl = 'https://live2d.jixiaob.cn/get/?id=' + modelId + '-' + modelTexturesId;
                 console.log('Loading Live2D model:', modelUrl, 'retry:', retryCount);
-
+    
                 // 检查canvas元素是否存在
                 var canvas = document.getElementById('live2d');
                 if (!canvas) {
                     console.error('Live2D canvas元素不存在');
-                    if (retryCount < 3) {
-                        setTimeout(function () {
-                            loadModel(modelId, modelTexturesId, retryCount + 1);
-                        }, 500);
+                    // 如果canvas不存在，尝试重新注入HTML
+                    injectWaifuHTML();
+                    canvas = document.getElementById('live2d');
+                    if (!canvas) {
+                        if (retryCount < 5) {
+                            setTimeout(function () {
+                                loadModel(modelId, modelTexturesId, retryCount + 1);
+                            }, 800);
+                        }
+                        return;
                     }
-                    return;
                 }
-
+    
                 // 确保canvas处于正确状态
                 canvas.style.display = 'block';
                 canvas.style.visibility = 'visible';
                 canvas.style.opacity = '1';
-
+    
                 // 加载模型
                 loadlive2d('live2d', modelUrl);
-
+                
                 // 优化的加载检测机制
                 var checkInterval = setInterval(function () {
                     var canvas = document.getElementById('live2d');
@@ -110,19 +116,22 @@
                         return;
                     }
                 }, 500);
-
+    
                 // 超时检测
                 setTimeout(function () {
                     clearInterval(checkInterval);
                     var canvas = document.getElementById('live2d');
-                    if (canvas && (canvas.style.display === 'none' || canvas.style.visibility === 'hidden')) {
+                    if (!canvas || canvas.style.display === 'none' || canvas.style.visibility === 'hidden') {
                         console.warn('Live2D模型可能加载失败，尝试重新加载');
-                        if (retryCount < 2) {
+                        if (retryCount < 3) {
                             loadModel(modelId, modelTexturesId, retryCount + 1);
+                        } else {
+                            // 最后尝试使用备用模型
+                            loadModel(100, 0, 0); // 使用默认的bilibili 22娘模型
                         }
                     }
-                }, 8000);
-
+                }, 10000); // 增加超时时间
+    
             } catch (error) {
                 console.error('Live2D模型加载失败:', error);
                 if (retryCount < 3) {

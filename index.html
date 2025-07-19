@@ -223,17 +223,26 @@
             if (window.Live2DWaifu) {
                 console.log('开始初始化Live2D看板娘');
                 Live2DWaifu.init();
+                
+                // 添加额外检查，确保模型显示
+                setTimeout(function() {
+                    var canvas = document.getElementById('live2d');
+                    if (!canvas || canvas.style.display === 'none' || canvas.style.visibility === 'hidden') {
+                        console.log('模型未正确显示，尝试重新初始化');
+                        Live2DWaifu.init();
+                    }
+                }, 3000);
             } else {
                 console.log('等待Live2D模块加载...');
-                setTimeout(initLive2D, 200);
+                setTimeout(initLive2D, 300); // 增加等待时间
             }
         }
-
+    
         // 页面准备就绪时初始化
         $(document).ready(function () {
-            initLive2D();
+            setTimeout(initLive2D, 500); // 延迟初始化，确保所有资源加载
         });
-
+    
         // 页面完全加载后确保初始化（防止强制刷新时的问题）
         $(window).on('load', function () {
             setTimeout(function () {
@@ -241,7 +250,7 @@
                     console.log('页面加载完成后重新初始化Live2D');
                     initLive2D();
                 }
-            }, 500);
+            }, 1000); // 增加延迟时间
         });
     </script>
 
