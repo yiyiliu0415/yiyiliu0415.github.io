@@ -286,8 +286,19 @@
     // 背景切换功能
     function changeBackground() {
         // 添加时间戳参数强制刷新背景图片
-        var timestamp = new Date().getTime();
-        var newBgUrl = 'https://t.alcy.cc/moez?t=' + timestamp;
+        // var timestamp = new Date().getTime();
+        // var newBgUrl = 'https://t.alcy.cc/moez?t=' + timestamp;
+
+        // 定义本地背景图片的路径数组
+        var backgrounds = [
+            'static/assets/img/background1.jpg',
+            'static/assets/img/background2.jpg'
+        ];
+
+        // 随机选择一张背景图片
+        var randomIndex = Math.floor(Math.random() * backgrounds.length);
+        var newBgUrl = backgrounds[randomIndex];
+
         $('body').css('background-image', 'url(' + newBgUrl + ')');
 
         // 显示提示消息
