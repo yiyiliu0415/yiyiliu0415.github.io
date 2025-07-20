@@ -2282,7 +2282,7 @@
         
         // 判定点
         hitZone: {
-            x: 150,
+            x: 200,
             y: 0,
             width: 3,
             height: 450,
@@ -2453,17 +2453,31 @@
         },
         
         drawHitZone: function() {
-            // 绘制判定点（半透明竖线）
-            this.ctx.fillStyle = this.hitZone.color;
-            this.ctx.fillRect(this.hitZone.x, this.hitZone.y, this.hitZone.width, this.hitZone.height);
+            // 绘制判定点（同心圆）
+            var centerX = this.hitZone.x;
+            var upperY = this.canvas.height / 4;
+            var lowerY = this.canvas.height * 3/4;
             
-            // 绘制判定点标识（小圆点）
-            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            // 上轨道判定点
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
             this.ctx.beginPath();
-            this.ctx.arc(this.hitZone.x + 1.5, this.canvas.height / 4, 4, 0, Math.PI * 2);
+            this.ctx.arc(centerX, upperY, 12, 0, Math.PI * 2);
             this.ctx.fill();
+            
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
             this.ctx.beginPath();
-            this.ctx.arc(this.hitZone.x + 1.5, this.canvas.height * 3/4, 4, 0, Math.PI * 2);
+            this.ctx.arc(centerX, upperY, 6, 0, Math.PI * 2);
+            this.ctx.fill();
+            
+            // 下轨道判定点
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            this.ctx.beginPath();
+            this.ctx.arc(centerX, lowerY, 12, 0, Math.PI * 2);
+            this.ctx.fill();
+            
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            this.ctx.beginPath();
+            this.ctx.arc(centerX, lowerY, 6, 0, Math.PI * 2);
             this.ctx.fill();
         },
         
@@ -2511,20 +2525,12 @@
         },
         
         drawAttack: function(attack) {
-            // 绘制攻击效果
+            // 绘制攻击效果（爆炸效果）
             var alpha = attack.life / 20;
-            this.ctx.fillStyle = `rgba(255, 255, 0, ${alpha})`;
+            this.ctx.fillStyle = 'rgba(255, 255, 0, ' + alpha + ')';
             this.ctx.beginPath();
             this.ctx.arc(attack.x, attack.y, attack.size, 0, Math.PI * 2);
             this.ctx.fill();
-            
-            // 绘制攻击光线
-            this.ctx.strokeStyle = `rgba(255, 215, 0, ${alpha})`;
-            this.ctx.lineWidth = 3;
-            this.ctx.beginPath();
-            this.ctx.moveTo(this.hitZone.x, attack.y);
-            this.ctx.lineTo(attack.x, attack.y);
-            this.ctx.stroke();
         },
         
         spawnEnemy: function() {

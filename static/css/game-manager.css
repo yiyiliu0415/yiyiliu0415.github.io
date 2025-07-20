@@ -1256,7 +1256,7 @@
 
 .runner-info {
     background: rgba(255, 255, 255, 0.1);
-    padding: 20px 25px;
+    padding: 25px 30px;
     display: flex;
     justify-content: space-around;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
