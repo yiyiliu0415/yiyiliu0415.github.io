@@ -285,12 +285,14 @@
 
     // 背景切换功能
     function changeBackground() {
-        // 切换背景时添加滚动类
-        $('body').addClass('scroll-bg');
+        // 添加时间戳参数强制刷新背景图片
+        // var timestamp = new Date().getTime();
+        // var newBgUrl = 'https://t.alcy.cc/moez?t=' + timestamp;
 
+        // 定义本地背景图片的路径数组
         var backgrounds = [
-            'static/assets/img/background1.jpg',
-            'static/assets/img/background2.jpg'
+            'static/assets/img/background1.png',
+            'static/assets/img/background2.png'
         ];
 
         // 随机选择一张背景图片
@@ -299,9 +301,13 @@
 
         $('body').css('background-image', 'url(' + newBgUrl + ')');
 
-        // 显示提示消息
-        if (typeof showMessage === 'function') {
-            showMessage('背景已切换！喜欢这张图片吗？', 3000, true);
+        // 初始固定背景
+        if(!window.hasInitialBg) {
+            window.hasInitialBg = true;
+            $('body').css({
+                'background-image': 'url(' + backgrounds[currentBgIndex] + ')',
+                'background-attachment': 'fixed'
+            });
         }
     }
 
@@ -574,20 +580,10 @@
     function init() {
         injectWaifuHTML();
         bindEvents();
-
-        $(document).ready(function () {
-            // 重置到默认位置
-            resetToDefaultPosition();
-
-            // 设置初始鼠标样式
-            $('.waifu').css('cursor', 'url(static/assets/img/cursor-grab.svg) 16 16, grab');
-
-            // 初始化欢迎消息
-            initWelcomeMessage();
-
-            // 初始化模型
-            initModel();
-        });
+        resetToDefaultPosition();
+        initWelcomeMessage();
+        changeBackground(); // 新增初始化调用
+        initModel();
     }
 
     // 暴露公共API
