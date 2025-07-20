@@ -398,8 +398,8 @@
                     <div class="runner-start-screen" id="runner-start-screen">
                         <div class="start-text">准备开始跑酷冒险！</div>
                         <div class="start-instruction">
-                            <div>按 F 键攻击上轨道敌人</div>
-                            <div>按 J 键攻击下轨道敌人</div>
+                            <div>按F或D键攻击上轨道敌人</div>
+                            <div>按J或K键攻击下轨道敌人</div>
                             <div>击败150个敌人或生存2分钟即可获胜！</div>
                         </div>
                         <div class="runner-controls">
@@ -2241,7 +2241,7 @@
                     runnerGame.attack(1); // 攻击下轨道
                     e.preventDefault();
                 }else if (e.key.toLowerCase() === 'd') {
-                    runnerGame.attack(0); // 攻击下轨道
+                    runnerGame.attack(0); // 攻击上轨道
                     e.preventDefault();
                 }
             }
@@ -2347,8 +2347,7 @@
                 return;
             }
             
-            var self = this;
-            requestAnimationFrame(function() { self.gameLoop(); });
+            requestAnimationFrame(() => this.gameLoop());
         },
         
         update: function() {
@@ -2364,8 +2363,8 @@
             }
             
             // 更新敌人
-            for (var i = this.enemies.length - 1; i >= 0; i--) {
-                var enemy = this.enemies[i];
+            for (let i = this.enemies.length - 1; i >= 0; i--) {
+                let enemy = this.enemies[i];
                 enemy.x -= this.enemySpeed;
                 
                 // 检查敌人是否到达判定点后方（玩家位置）
@@ -2381,8 +2380,8 @@
             }
             
             // 更新攻击效果
-            for (var i = this.attacks.length - 1; i >= 0; i--) {
-                var attack = this.attacks[i];
+            for (let i = this.attacks.length - 1; i >= 0; i--) {
+                let attack = this.attacks[i];
                 attack.life--;
                 if (attack.life <= 0) {
                     this.attacks.splice(i, 1);
@@ -2409,14 +2408,10 @@
             this.drawPlayer();
             
             // 绘制敌人
-            for (var i = 0; i < this.enemies.length; i++) {
-                this.drawEnemy(this.enemies[i]);
-            }
+            this.enemies.forEach(enemy => this.drawEnemy(enemy));
             
             // 绘制攻击效果
-            for (var i = 0; i < this.attacks.length; i++) {
-                this.drawAttack(this.attacks[i]);
-            }
+            this.attacks.forEach(attack => this.drawAttack(attack));
         },
         
         drawBackground: function() {
@@ -2430,8 +2425,8 @@
             
             // 绘制移动的云朵
             this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            for (var i = 0; i < 4; i++) {
-                var x = (this.backgroundX + i * 180) % (this.canvas.width + 100);
+            for (let i = 0; i < 4; i++) {
+                let x = (this.backgroundX + i * 180) % (this.canvas.width + 100);
                 this.drawCloud(x, 60 + i * 25);
             }
         },
@@ -2509,7 +2504,7 @@
                 
                 // 绘制牙齿
                 this.ctx.fillStyle = 'white';
-                for (var i = 0; i < 3; i++) {
+                for (let i = 0; i < 3; i++) {
                     this.ctx.fillRect(enemy.x + 8 + i * 8, enemy.y + enemy.height - 8, 4, 8);
                 }
             }
@@ -2518,13 +2513,13 @@
         drawAttack: function(attack) {
             // 绘制攻击效果
             var alpha = attack.life / 20;
-            this.ctx.fillStyle = 'rgba(255, 255, 0, ' + alpha + ')';
+            this.ctx.fillStyle = `rgba(255, 255, 0, ${alpha})`;
             this.ctx.beginPath();
             this.ctx.arc(attack.x, attack.y, attack.size, 0, Math.PI * 2);
             this.ctx.fill();
             
             // 绘制攻击光线
-            this.ctx.strokeStyle = 'rgba(255, 215, 0, ' + alpha + ')';
+            this.ctx.strokeStyle = `rgba(255, 215, 0, ${alpha})`;
             this.ctx.lineWidth = 3;
             this.ctx.beginPath();
             this.ctx.moveTo(this.hitZone.x, attack.y);
@@ -2549,8 +2544,8 @@
         
         attack: function(track) {
             // 检查是否击中敌人（在判定点附近）
-            for (var i = this.enemies.length - 1; i >= 0; i--) {
-                var enemy = this.enemies[i];
+            for (let i = this.enemies.length - 1; i >= 0; i--) {
+                let enemy = this.enemies[i];
                 if (enemy.track === track && !enemy.hit && 
                     enemy.x < this.hitZone.x + 50 && 
                     enemy.x + enemy.width > this.hitZone.x - 50) {
@@ -2567,11 +2562,10 @@
                     });
                     
                     // 延迟移除敌人
-                    var self = this;
-                    setTimeout(function() {
-                        var index = self.enemies.indexOf(enemy);
+                    setTimeout(() => {
+                        let index = this.enemies.indexOf(enemy);
                         if (index > -1) {
-                            self.enemies.splice(index, 1);
+                            this.enemies.splice(index, 1);
                         }
                     }, 200);
                     
@@ -2586,18 +2580,17 @@
             
             // 屏幕震动效果
             this.canvas.style.transform = 'translateX(5px)';
-            var self = this;
-            setTimeout(function() {
-                self.canvas.style.transform = 'translateX(-5px)';
-                setTimeout(function() {
-                    self.canvas.style.transform = 'translateX(0)';
+            setTimeout(() => {
+                this.canvas.style.transform = 'translateX(-5px)';
+                setTimeout(() => {
+                    this.canvas.style.transform = 'translateX(0)';
                 }, 50);
             }, 50);
         },
         
         updateUI: function() {
-            document.getElementById('runner-kills').textContent = this.kills + '/' + this.targetKills;
-            document.getElementById('runner-health').style.width = ((this.health/300)*100) + '%';
+            document.getElementById('runner-kills').textContent = `${this.kills}/${this.targetKills}`;
+            document.getElementById('runner-health').style.width = `${(this.health/300)*100}%`;
             document.getElementById('runner-health').textContent = this.health;
             
             if (this.isRunning) {
@@ -2606,7 +2599,7 @@
                 var minutes = Math.floor(remaining / 60000);
                 var seconds = Math.floor((remaining % 60000) / 1000);
                 document.getElementById('runner-time').textContent = 
-                    minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
             }
         },
         
@@ -2614,7 +2607,7 @@
             this.isRunning = false;
             document.getElementById('runner-game-over-text').textContent = message;
             document.getElementById('runner-final-stats').textContent = 
-                '击败敌人: ' + this.kills + '/' + this.targetKills;
+                `击败敌人: ${this.kills}/${this.targetKills}`;
             document.getElementById('runner-game-over').style.display = 'flex';
         }
     };
