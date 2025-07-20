@@ -48,6 +48,12 @@
                         <h3>数字华容道</h3>
                         <p>移动数字方块，按顺序排列！</p>
                     </div>
+                    
+                    <div class="game-option" id="select-runner">
+                        <div class="game-icon">🏃</div>
+                        <h3>横向跑酷</h3>
+                        <p>按F/J键击败敌人，生存到最后！</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -355,6 +361,62 @@
         `;
 
         document.body.insertAdjacentHTML('beforeend', slidingPuzzleHTML);
+    }
+
+    // 横向跑酷游戏HTML
+    function injectRunnerHTML() {
+        var runnerHTML = `
+        <div class="game-modal" id="runner-modal">
+            <div class="runner-game-window">
+                <div class="game-header">
+                    <h2 class="game-title">🏃 横向跑酷</h2>
+                    <button class="game-close" id="runner-close">×</button>
+                </div>
+
+                <div class="runner-info">
+                    <div class="score-container">
+                        <div class="score-label">击败敌人</div>
+                        <div class="score-value" id="runner-kills">0/100</div>
+                    </div>
+                    <div class="health-bar">
+                        <div class="score-label">生命值</div>
+                        <div class="health-fill" id="runner-health" style="width: 100%;">100</div>
+                    </div>
+                    <div class="score-container">
+                        <div class="score-label">时间</div>
+                        <div class="time-display" id="runner-time">2:00</div>
+                    </div>
+                </div>
+
+                <div class="runner-game-area">
+                    <canvas id="runner-canvas" width="560" height="400"></canvas>
+                    <div class="runner-game-over" id="runner-game-over">
+                        <div class="game-over-text" id="runner-game-over-text">游戏结束!</div>
+                        <div class="runner-final-stats" id="runner-final-stats">击败敌人: 0/100</div>
+                        <button class="game-btn" id="runner-restart">重新开始</button>
+                    </div>
+                    <div class="runner-start-screen" id="runner-start-screen">
+                        <div class="start-text">准备开始跑酷冒险！</div>
+                        <div class="start-instruction">
+                            <div>按 F 键攻击上轨道敌人</div>
+                            <div>按 J 键攻击下轨道敌人</div>
+                            <div>击败100个敌人或生存2分钟即可获胜！</div>
+                        </div>
+                        <div class="runner-controls">
+                            <div class="controls-title">游戏说明</div>
+                            <div class="control-item">• 敌人会从右侧出现，分为上下两个轨道</div>
+                            <div class="control-item">• 及时按键击败敌人，否则会被攻击扣血</div>
+                            <div class="control-item">• 每次被攻击扣除20点生命值</div>
+                            <div class="control-item">• 生命值归零或时间到达即游戏结束</div>
+                        </div>
+                        <button class="game-btn" id="runner-start">开始游戏</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', runnerHTML);
     }
 
     // 俄罗斯方块游戏逻辑
@@ -2033,6 +2095,14 @@
             });
         }
 
+        var selectRunner = document.getElementById('select-runner');
+        if (selectRunner) {
+            selectRunner.addEventListener('click', function () {
+                closeGameSelector();
+                openRunnerGame();
+            });
+        }
+
         // 点击背景关闭选择器
         if (selectorModal) {
             selectorModal.addEventListener('click', function (e) {
@@ -2144,6 +2214,407 @@
                 }
             });
         }
+
+        // 横向跑酷事件
+        var runnerClose = document.getElementById('runner-close');
+        var runnerRestart = document.getElementById('runner-restart');
+        var runnerStart = document.getElementById('runner-start');
+        var runnerModal = document.getElementById('runner-modal');
+
+        if (runnerClose) runnerClose.addEventListener('click', closeRunnerGame);
+        if (runnerRestart) runnerRestart.addEventListener('click', restartRunnerGame);
+        if (runnerStart) runnerStart.addEventListener('click', function() {
+            runnerGame.start();
+        });
+
+        // 横向跑酷键盘控制
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('runner-modal').style.display === 'flex' && runnerGame.isRunning) {
+                if (e.key.toLowerCase() === 'f') {
+                    runnerGame.attack(0); // 攻击上轨道
+                    e.preventDefault();
+                } else if (e.key.toLowerCase() === 'j') {
+                    runnerGame.attack(1); // 攻击下轨道
+                    e.preventDefault();
+                }else if (e.key.toLowerCase() === 'k') {
+                    runnerGame.attack(1); // 攻击下轨道
+                    e.preventDefault();
+                }else if (e.key.toLowerCase() === 'd') {
+                    runnerGame.attack(0); // 攻击下轨道
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // 点击背景关闭横向跑酷
+        if (runnerModal) {
+            runnerModal.addEventListener('click', function (e) {
+                if (e.target === runnerModal) {
+                    closeRunnerGame();
+                }
+            });
+        }
+    }
+
+    // 横向跑酷游戏逻辑
+    var runnerGame = {
+        canvas: null,
+        ctx: null,
+        isRunning: false,
+        isPaused: false,
+        gameStartTime: 0,
+        gameDuration: 120000, // 2分钟
+        
+        // 游戏状态
+        health: 100,
+        kills: 0,
+        targetKills: 100,
+        
+        // 玩家角色
+        player: {
+            x: 50,
+            y: 200,
+            width: 40,
+            height: 60,
+            color: '#3498db'
+        },
+        
+        // 敌人数组
+        enemies: [],
+        enemySpawnRate: 0.02, // 敌人生成概率
+        enemySpeed: 3,
+        
+        // 攻击效果
+        attacks: [],
+        
+        // 背景
+        backgroundX: 0,
+        
+        init: function() {
+            this.canvas = document.getElementById('runner-canvas');
+            this.ctx = this.canvas.getContext('2d');
+            this.reset();
+        },
+        
+        reset: function() {
+            this.health = 100;
+            this.kills = 0;
+            this.enemies = [];
+            this.attacks = [];
+            this.backgroundX = 0;
+            this.isRunning = false;
+            this.isPaused = false;
+            this.updateUI();
+        },
+        
+        start: function() {
+            this.isRunning = true;
+            this.gameStartTime = Date.now();
+            document.getElementById('runner-start-screen').style.display = 'none';
+            this.gameLoop();
+        },
+        
+        gameLoop: function() {
+            if (!this.isRunning) return;
+            
+            this.update();
+            this.draw();
+            
+            // 检查游戏结束条件
+            if (this.health <= 0) {
+                this.gameOver('生命值耗尽！');
+                return;
+            }
+            
+            var elapsed = Date.now() - this.gameStartTime;
+            if (elapsed >= this.gameDuration) {
+                this.gameOver('时间到！恭喜生存到最后！');
+                return;
+            }
+            
+            if (this.kills >= this.targetKills) {
+                this.gameOver('恭喜！成功击败100个敌人！');
+                return;
+            }
+            
+            var self = this;
+            requestAnimationFrame(function() { self.gameLoop(); });
+        },
+        
+        update: function() {
+            // 更新背景
+            this.backgroundX -= 2;
+            if (this.backgroundX <= -this.canvas.width) {
+                this.backgroundX = 0;
+            }
+            
+            // 生成敌人
+            if (Math.random() < this.enemySpawnRate) {
+                this.spawnEnemy();
+            }
+            
+            // 更新敌人
+            for (var i = this.enemies.length - 1; i >= 0; i--) {
+                var enemy = this.enemies[i];
+                enemy.x -= this.enemySpeed;
+                
+                // 检查敌人是否到达玩家位置
+                if (enemy.x + enemy.width < this.player.x && !enemy.hit) {
+                    this.takeDamage();
+                    enemy.hit = true;
+                }
+                
+                // 移除超出屏幕的敌人
+                if (enemy.x + enemy.width < 0) {
+                    this.enemies.splice(i, 1);
+                }
+            }
+            
+            // 更新攻击效果
+            for (var i = this.attacks.length - 1; i >= 0; i--) {
+                var attack = this.attacks[i];
+                attack.life--;
+                if (attack.life <= 0) {
+                    this.attacks.splice(i, 1);
+                }
+            }
+            
+            this.updateUI();
+        },
+        
+        draw: function() {
+            // 清空画布
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            // 绘制背景
+            this.drawBackground();
+            
+            // 绘制轨道线
+            this.drawTracks();
+            
+            // 绘制玩家
+            this.drawPlayer();
+            
+            // 绘制敌人
+            for (var i = 0; i < this.enemies.length; i++) {
+                this.drawEnemy(this.enemies[i]);
+            }
+            
+            // 绘制攻击效果
+            for (var i = 0; i < this.attacks.length; i++) {
+                this.drawAttack(this.attacks[i]);
+            }
+        },
+        
+        drawBackground: function() {
+            // 绘制天空渐变
+            var gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
+            gradient.addColorStop(0, '#87CEEB');
+            gradient.addColorStop(0.7, '#98FB98');
+            gradient.addColorStop(1, '#8FBC8F');
+            this.ctx.fillStyle = gradient;
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            // 绘制移动的云朵
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            for (var i = 0; i < 3; i++) {
+                var x = (this.backgroundX + i * 200) % (this.canvas.width + 100);
+                this.drawCloud(x, 50 + i * 30);
+            }
+        },
+        
+        drawCloud: function(x, y) {
+            this.ctx.beginPath();
+            this.ctx.arc(x, y, 20, 0, Math.PI * 2);
+            this.ctx.arc(x + 25, y, 25, 0, Math.PI * 2);
+            this.ctx.arc(x + 50, y, 20, 0, Math.PI * 2);
+            this.ctx.arc(x + 25, y - 15, 15, 0, Math.PI * 2);
+            this.ctx.fill();
+        },
+        
+        drawTracks: function() {
+            // 绘制上下轨道分界线
+            this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            this.ctx.lineWidth = 2;
+            this.ctx.setLineDash([10, 5]);
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, this.canvas.height / 2);
+            this.ctx.lineTo(this.canvas.width, this.canvas.height / 2);
+            this.ctx.stroke();
+            this.ctx.setLineDash([]);
+        },
+        
+        drawPlayer: function() {
+            // 绘制玩家角色（简单的跑步小人）
+            this.ctx.fillStyle = this.player.color;
+            
+            // 身体
+            this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
+            
+            // 头部
+            this.ctx.beginPath();
+            this.ctx.arc(this.player.x + this.player.width/2, this.player.y - 10, 15, 0, Math.PI * 2);
+            this.ctx.fill();
+            
+            // 眼睛
+            this.ctx.fillStyle = 'white';
+            this.ctx.fillRect(this.player.x + 12, this.player.y - 15, 4, 4);
+            this.ctx.fillRect(this.player.x + 20, this.player.y - 15, 4, 4);
+            
+            // 跑步动画效果（简单的腿部摆动）
+            var time = Date.now() * 0.01;
+            this.ctx.fillStyle = this.player.color;
+            this.ctx.fillRect(this.player.x + 5, this.player.y + this.player.height, 8, 15 + Math.sin(time) * 3);
+            this.ctx.fillRect(this.player.x + 25, this.player.y + this.player.height, 8, 15 - Math.sin(time) * 3);
+        },
+        
+        drawEnemy: function(enemy) {
+            // 绘制敌人（红色方块怪物）
+            this.ctx.fillStyle = enemy.hit ? '#95a5a6' : enemy.color;
+            this.ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+            
+            // 绘制敌人的眼睛
+            if (!enemy.hit) {
+                this.ctx.fillStyle = 'red';
+                this.ctx.fillRect(enemy.x + 5, enemy.y + 5, 6, 6);
+                this.ctx.fillRect(enemy.x + enemy.width - 11, enemy.y + 5, 6, 6);
+                
+                // 绘制牙齿
+                this.ctx.fillStyle = 'white';
+                for (var i = 0; i < 3; i++) {
+                    this.ctx.fillRect(enemy.x + 8 + i * 8, enemy.y + enemy.height - 8, 4, 8);
+                }
+            }
+        },
+        
+        drawAttack: function(attack) {
+            // 绘制攻击效果
+            var alpha = attack.life / 20;
+            this.ctx.fillStyle = 'rgba(255, 255, 0, ' + alpha + ')';
+            this.ctx.beginPath();
+            this.ctx.arc(attack.x, attack.y, attack.size, 0, Math.PI * 2);
+            this.ctx.fill();
+            
+            // 绘制攻击光线
+            this.ctx.strokeStyle = 'rgba(255, 215, 0, ' + alpha + ')';
+            this.ctx.lineWidth = 3;
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.player.x + this.player.width, attack.y);
+            this.ctx.lineTo(attack.x, attack.y);
+            this.ctx.stroke();
+        },
+        
+        spawnEnemy: function() {
+            var track = Math.random() < 0.5 ? 0 : 1; // 0=上轨道, 1=下轨道
+            var y = track === 0 ? this.canvas.height / 4 - 25 : this.canvas.height * 3/4 - 25;
+            
+            this.enemies.push({
+                x: this.canvas.width,
+                y: y,
+                width: 40,
+                height: 50,
+                track: track,
+                color: '#e74c3c',
+                hit: false
+            });
+        },
+        
+        attack: function(track) {
+            // 检查是否击中敌人
+            for (var i = this.enemies.length - 1; i >= 0; i--) {
+                var enemy = this.enemies[i];
+                if (enemy.track === track && !enemy.hit && 
+                    enemy.x < this.player.x + this.player.width + 100 && 
+                    enemy.x + enemy.width > this.player.x) {
+                    
+                    enemy.hit = true;
+                    this.kills++;
+                    
+                    // 添加攻击效果
+                    this.attacks.push({
+                        x: enemy.x + enemy.width / 2,
+                        y: enemy.y + enemy.height / 2,
+                        size: 20,
+                        life: 20
+                    });
+                    
+                    // 延迟移除敌人
+                    var self = this;
+                    setTimeout(function() {
+                        var index = self.enemies.indexOf(enemy);
+                        if (index > -1) {
+                            self.enemies.splice(index, 1);
+                        }
+                    }, 200);
+                    
+                    break;
+                }
+            }
+        },
+        
+        takeDamage: function() {
+            this.health -= 20;
+            if (this.health < 0) this.health = 0;
+            
+            // 屏幕震动效果
+            this.canvas.style.transform = 'translateX(5px)';
+            var self = this;
+            setTimeout(function() {
+                self.canvas.style.transform = 'translateX(-5px)';
+                setTimeout(function() {
+                    self.canvas.style.transform = 'translateX(0)';
+                }, 50);
+            }, 50);
+        },
+        
+        updateUI: function() {
+            document.getElementById('runner-kills').textContent = this.kills + '/' + this.targetKills;
+            document.getElementById('runner-health').style.width = this.health + '%';
+            document.getElementById('runner-health').textContent = this.health;
+            
+            if (this.isRunning) {
+                var elapsed = Date.now() - this.gameStartTime;
+                var remaining = Math.max(0, this.gameDuration - elapsed);
+                var minutes = Math.floor(remaining / 60000);
+                var seconds = Math.floor((remaining % 60000) / 1000);
+                document.getElementById('runner-time').textContent = 
+                    minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            }
+        },
+        
+        gameOver: function(message) {
+            this.isRunning = false;
+            document.getElementById('runner-game-over-text').textContent = message;
+            document.getElementById('runner-final-stats').textContent = 
+                '击败敌人: ' + this.kills + '/' + this.targetKills;
+            document.getElementById('runner-game-over').style.display = 'flex';
+        }
+    };
+
+    function initRunnerGame() {
+        runnerGame.init();
+    }
+
+    function startRunnerGame() {
+        runnerGame.start();
+    }
+
+    function openRunnerGame() {
+        document.getElementById('runner-modal').style.display = 'flex';
+        initRunnerGame();
+        document.getElementById('runner-start-screen').style.display = 'flex';
+        document.getElementById('runner-game-over').style.display = 'none';
+    }
+
+    function closeRunnerGame() {
+        document.getElementById('runner-modal').style.display = 'none';
+        runnerGame.isRunning = false;
+    }
+
+    function restartRunnerGame() {
+        runnerGame.reset();
+        document.getElementById('runner-start-screen').style.display = 'flex';
+        document.getElementById('runner-game-over').style.display = 'none';
     }
 
     // 初始化
@@ -2154,6 +2625,7 @@
         injectTetrisHTML();
         injectSudokuHTML();
         injectSlidingPuzzleHTML();
+        injectRunnerHTML();
         bindEvents();
         initSudokuGame();
         initSlidingPuzzleGame();
@@ -2173,7 +2645,9 @@
         openSudokuGame: openSudokuGame,
         closeSudokuGame: closeSudokuGame,
         openSlidingPuzzleGame: openSlidingPuzzleGame,
-        closeSlidingPuzzleGame: closeSlidingPuzzleGame
+        closeSlidingPuzzleGame: closeSlidingPuzzleGame,
+        openRunnerGame: openRunnerGame,
+        closeRunnerGame: closeRunnerGame
     };
 
     // 自动初始化
