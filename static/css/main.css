@@ -10,7 +10,7 @@ body {
     background-image: url('https://t.alcy.cc/moez');
     background-size: contain;
     background-attachment: fixed;
-    background-repeat: no-repeat;
+    background-repeat: center center;
     overflow-y: auto;
     overflow-x: auto;
     min-height: 100vh;
