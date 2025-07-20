@@ -285,21 +285,24 @@
 
     // 背景切换功能
     function changeBackground() {
-        // 添加时间戳参数强制刷新背景图片
-        // var timestamp = new Date().getTime();
-        // var newBgUrl = 'https://t.alcy.cc/moez?t=' + timestamp;
-
-        // 定义本地背景图片的路径数组
         var backgrounds = [
             'static/assets/img/background1.png',
             'static/assets/img/background2.png'
         ];
+        
+        // 初始化背景索引
+        window.currentBgIndex = window.currentBgIndex || 0;
 
-        // 随机选择一张背景图片
-        var randomIndex = Math.floor(Math.random() * backgrounds.length);
-        var newBgUrl = backgrounds[randomIndex];
-
-        $('body').css('background-image', 'url(' + newBgUrl + ')');
+        // 滚轮事件监听
+        document.addEventListener('wheel', function(e) {
+            if(Math.abs(e.deltaY) > 50) { // 防抖处理
+                currentBgIndex = (currentBgIndex + (e.deltaY > 0 ? 1 : -1) + backgrounds.length) % backgrounds.length;
+                $('body').css({
+                    'background-image': 'url(' + backgrounds[currentBgIndex] + ')',
+                    'background-attachment': 'scroll'
+                });
+            }
+        });
 
         // 初始固定背景
         if(!window.hasInitialBg) {
