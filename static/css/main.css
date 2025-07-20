@@ -10,7 +10,7 @@ body {
     background-image: url('https://t.alcy.cc/moez');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     background-repeat: no-repeat;
     min-height: 100vh;
     /* 可爱的默认鼠标样式 */

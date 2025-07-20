@@ -582,7 +582,7 @@
         bindEvents();
         resetToDefaultPosition();
         initWelcomeMessage();
-        changeBackground(); // 新增初始化调用
+        changeBackground();
         initModel();
     }
 
