@@ -1248,27 +1248,27 @@
     border-radius: 20px;
     padding: 0;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    width: 90%;
+    max-width: 800px;
+    width: 95%;
     animation: slideIn 0.3s ease;
     overflow: hidden;
 }
 
 .runner-info {
     background: rgba(255, 255, 255, 0.1);
-    padding: 15px 20px;
+    padding: 20px 25px;
     display: flex;
     justify-content: space-around;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
 }
 
 .runner-game-area {
     position: relative;
     display: flex;
     justify-content: center;
-    padding: 20px;
+    padding: 25px;
     background: rgba(255, 255, 255, 0.05);
 }
 
@@ -1286,7 +1286,7 @@
     transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.9);
     color: white;
-    padding: 30px;
+    padding: 35px;
     border-radius: 15px;
     text-align: center;
     display: none;
@@ -1294,6 +1294,7 @@
     align-items: center;
     gap: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
 }
 
 .runner-final-stats {
@@ -1307,38 +1308,58 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     color: white;
-    padding: 30px;
+    padding: 25px;
     border-radius: 15px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 85%;
+    max-height: 85%;
+    overflow-y: auto;
+}
+
+.runner-start-screen .start-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff7675;
+    margin-bottom: 8px;
+}
+
+.runner-start-screen .start-instruction {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.runner-start-screen .start-instruction div {
+    margin-bottom: 4px;
 }
 
 .runner-controls {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    padding: 15px;
-    margin-top: 15px;
+    padding: 12px;
+    margin-top: 8px;
     text-align: center;
 }
 
 .runner-controls .controls-title {
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .runner-controls .control-item {
     color: rgba(255, 255, 255, 0.9);
-    font-size: 14px;
-    margin-bottom: 5px;
+    font-size: 12px;
+    margin-bottom: 3px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -1346,7 +1367,7 @@
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 5px;
-    min-width: 120px;
+    min-width: 140px;
 }
 
 .health-fill {
@@ -1373,17 +1394,18 @@
 /* 横向跑酷响应式设计 */
 @media (max-width: 768px) {
     .runner-game-window {
-        width: 95%;
+        width: 98%;
+        max-width: 700px;
     }
     
     #runner-canvas {
         width: 100%;
-        max-width: 500px;
+        max-width: 600px;
         height: auto;
     }
     
     .runner-info {
-        padding: 10px 15px;
+        padding: 15px 20px;
         font-size: 14px;
     }
     
@@ -1391,10 +1413,11 @@
     .runner-start-screen {
         padding: 20px;
         font-size: 14px;
+        max-width: 90%;
     }
     
     .health-bar {
-        min-width: 100px;
+        min-width: 120px;
     }
     
     .time-display {
@@ -1404,7 +1427,7 @@
 
 @media (max-width: 480px) {
     #runner-canvas {
-        max-width: 400px;
+        max-width: 450px;
     }
     
     .runner-info {
@@ -1419,5 +1442,14 @@
     
     .health-bar {
         min-width: 150px;
+    }
+    
+    .runner-start-screen {
+        padding: 15px;
+        max-width: 95%;
+    }
+    
+    .runner-controls .control-item {
+        font-size: 11px;
     }
 }

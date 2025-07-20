@@ -376,11 +376,11 @@
                 <div class="runner-info">
                     <div class="score-container">
                         <div class="score-label">击败敌人</div>
-                        <div class="score-value" id="runner-kills">0/100</div>
+                        <div class="score-value" id="runner-kills">0/150</div>
                     </div>
                     <div class="health-bar">
                         <div class="score-label">生命值</div>
-                        <div class="health-fill" id="runner-health" style="width: 100%;">100</div>
+                        <div class="health-fill" id="runner-health" style="width: 100%;">300</div>
                     </div>
                     <div class="score-container">
                         <div class="score-label">时间</div>
@@ -389,10 +389,10 @@
                 </div>
 
                 <div class="runner-game-area">
-                    <canvas id="runner-canvas" width="560" height="400"></canvas>
+                    <canvas id="runner-canvas" width="700" height="450"></canvas>
                     <div class="runner-game-over" id="runner-game-over">
                         <div class="game-over-text" id="runner-game-over-text">游戏结束!</div>
-                        <div class="runner-final-stats" id="runner-final-stats">击败敌人: 0/100</div>
+                        <div class="runner-final-stats" id="runner-final-stats">击败敌人: 0/150</div>
                         <button class="game-btn" id="runner-restart">重新开始</button>
                     </div>
                     <div class="runner-start-screen" id="runner-start-screen">
@@ -400,7 +400,7 @@
                         <div class="start-instruction">
                             <div>按 F 键攻击上轨道敌人</div>
                             <div>按 J 键攻击下轨道敌人</div>
-                            <div>击败100个敌人或生存2分钟即可获胜！</div>
+                            <div>击败150个敌人或生存2分钟即可获胜！</div>
                         </div>
                         <div class="runner-controls">
                             <div class="controls-title">游戏说明</div>
@@ -408,6 +408,7 @@
                             <div class="control-item">• 及时按键击败敌人，否则会被攻击扣血</div>
                             <div class="control-item">• 每次被攻击扣除20点生命值</div>
                             <div class="control-item">• 生命值归零或时间到达即游戏结束</div>
+                            <div class="control-item">• 注意判定点位置，敌人到达时按键攻击</div>
                         </div>
                         <button class="game-btn" id="runner-start">开始游戏</button>
                     </div>
@@ -2266,22 +2267,31 @@
         gameDuration: 120000, // 2分钟
         
         // 游戏状态
-        health: 100,
+        health: 300,
         kills: 0,
-        targetKills: 100,
+        targetKills: 150,
         
         // 玩家角色
         player: {
-            x: 50,
-            y: 200,
+            x: 80,
+            y: 225,
             width: 40,
             height: 60,
             color: '#3498db'
         },
         
+        // 判定点
+        hitZone: {
+            x: 150,
+            y: 0,
+            width: 3,
+            height: 450,
+            color: 'rgba(255, 255, 255, 0.3)'
+        },
+        
         // 敌人数组
         enemies: [],
-        enemySpawnRate: 0.02, // 敌人生成概率
+        enemySpawnRate: 0.02,
         enemySpeed: 3,
         
         // 攻击效果
@@ -2297,7 +2307,7 @@
         },
         
         reset: function() {
-            this.health = 100;
+            this.health = 300;
             this.kills = 0;
             this.enemies = [];
             this.attacks = [];
@@ -2333,7 +2343,7 @@
             }
             
             if (this.kills >= this.targetKills) {
-                this.gameOver('恭喜！成功击败100个敌人！');
+                this.gameOver('恭喜！成功击败150个敌人！');
                 return;
             }
             
@@ -2358,8 +2368,8 @@
                 var enemy = this.enemies[i];
                 enemy.x -= this.enemySpeed;
                 
-                // 检查敌人是否到达玩家位置
-                if (enemy.x + enemy.width < this.player.x && !enemy.hit) {
+                // 检查敌人是否到达判定点后方（玩家位置）
+                if (enemy.x + enemy.width < this.hitZone.x && !enemy.hit) {
                     this.takeDamage();
                     enemy.hit = true;
                 }
@@ -2392,6 +2402,9 @@
             // 绘制轨道线
             this.drawTracks();
             
+            // 绘制判定点
+            this.drawHitZone();
+            
             // 绘制玩家
             this.drawPlayer();
             
@@ -2417,9 +2430,9 @@
             
             // 绘制移动的云朵
             this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            for (var i = 0; i < 3; i++) {
-                var x = (this.backgroundX + i * 200) % (this.canvas.width + 100);
-                this.drawCloud(x, 50 + i * 30);
+            for (var i = 0; i < 4; i++) {
+                var x = (this.backgroundX + i * 180) % (this.canvas.width + 100);
+                this.drawCloud(x, 60 + i * 25);
             }
         },
         
@@ -2442,6 +2455,21 @@
             this.ctx.lineTo(this.canvas.width, this.canvas.height / 2);
             this.ctx.stroke();
             this.ctx.setLineDash([]);
+        },
+        
+        drawHitZone: function() {
+            // 绘制判定点（半透明竖线）
+            this.ctx.fillStyle = this.hitZone.color;
+            this.ctx.fillRect(this.hitZone.x, this.hitZone.y, this.hitZone.width, this.hitZone.height);
+            
+            // 绘制判定点标识（小圆点）
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            this.ctx.beginPath();
+            this.ctx.arc(this.hitZone.x + 1.5, this.canvas.height / 4, 4, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.beginPath();
+            this.ctx.arc(this.hitZone.x + 1.5, this.canvas.height * 3/4, 4, 0, Math.PI * 2);
+            this.ctx.fill();
         },
         
         drawPlayer: function() {
@@ -2499,7 +2527,7 @@
             this.ctx.strokeStyle = 'rgba(255, 215, 0, ' + alpha + ')';
             this.ctx.lineWidth = 3;
             this.ctx.beginPath();
-            this.ctx.moveTo(this.player.x + this.player.width, attack.y);
+            this.ctx.moveTo(this.hitZone.x, attack.y);
             this.ctx.lineTo(attack.x, attack.y);
             this.ctx.stroke();
         },
@@ -2520,12 +2548,12 @@
         },
         
         attack: function(track) {
-            // 检查是否击中敌人
+            // 检查是否击中敌人（在判定点附近）
             for (var i = this.enemies.length - 1; i >= 0; i--) {
                 var enemy = this.enemies[i];
                 if (enemy.track === track && !enemy.hit && 
-                    enemy.x < this.player.x + this.player.width + 100 && 
-                    enemy.x + enemy.width > this.player.x) {
+                    enemy.x < this.hitZone.x + 50 && 
+                    enemy.x + enemy.width > this.hitZone.x - 50) {
                     
                     enemy.hit = true;
                     this.kills++;
@@ -2569,7 +2597,7 @@
         
         updateUI: function() {
             document.getElementById('runner-kills').textContent = this.kills + '/' + this.targetKills;
-            document.getElementById('runner-health').style.width = this.health + '%';
+            document.getElementById('runner-health').style.width = ((this.health/300)*100) + '%';
             document.getElementById('runner-health').textContent = this.health;
             
             if (this.isRunning) {
