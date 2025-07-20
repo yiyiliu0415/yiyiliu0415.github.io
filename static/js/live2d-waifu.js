@@ -285,32 +285,25 @@
 
     // 背景切换功能
     function changeBackground() {
+        // 添加时间戳参数强制刷新背景图片
+        // var timestamp = new Date().getTime();
+        // var newBgUrl = 'https://t.alcy.cc/moez?t=' + timestamp;
+
+        // 定义本地背景图片的路径数组
         var backgrounds = [
             'static/assets/img/background1.png',
             'static/assets/img/background2.png'
         ];
-        
-        // 初始化背景索引
-        window.currentBgIndex = window.currentBgIndex || 0;
 
-        // 滚轮事件监听
-        document.addEventListener('wheel', function(e) {
-            if(Math.abs(e.deltaY) > 50) { // 防抖处理
-                currentBgIndex = (currentBgIndex + (e.deltaY > 0 ? 1 : -1) + backgrounds.length) % backgrounds.length;
-                $('body').css({
-                    'background-image': 'url(' + backgrounds[currentBgIndex] + ')',
-                    'background-attachment': 'scroll'
-                });
-            }
-        });
+        // 随机选择一张背景图片
+        var randomIndex = Math.floor(Math.random() * backgrounds.length);
+        var newBgUrl = backgrounds[randomIndex];
 
-        // 初始固定背景
-        if(!window.hasInitialBg) {
-            window.hasInitialBg = true;
-            $('body').css({
-                'background-image': 'url(' + backgrounds[currentBgIndex] + ')',
-                'background-attachment': 'fixed'
-            });
+        $('body').css('background-image', 'url(' + newBgUrl + ')');
+
+        // 显示提示消息
+        if (typeof showMessage === 'function') {
+            showMessage('背景已切换！喜欢这张图片吗？', 3000, true);
         }
     }
 
@@ -425,7 +418,7 @@
         });
 
         $(document).on('click', '#live2d', function () {
-            var texts = ['是…是不是想摸我呀？', 'kyaa~好害羞！', '请…请轻一点…', '按 B 键可以进入背景欣赏模式呢~', '想要纯净的背景体验吗？试试按 B 键！', '按 N 键可以切换背景图片呢~', '按 N 键能换背景图片哦~', '想看不同的风景吗？按 N 键试试！', '按 T 键可以切换鼠标轨迹效果呢✨', '无聊的话可以玩玩游戏哦🎮', '来挑战一下2048游戏吧！', '试试点击🖼️按钮进入背景欣赏模式~', '点击🌄按钮可以换个美丽的背景哦~'];
+            var texts = ['是…是不是想摸我呀？', 'kyaa~好害羞！', '请…请轻一点…', '按 B 键可以进入背景欣赏模式呢~', '想要纯净的背景体验吗？试试按 B 键！', '按 N 键能换背景图片哦~', '想看不同的风景吗？按 N 键试试！', '按 T 键可以切换鼠标轨迹效果呢✨', '无聊的话可以玩玩游戏哦🎮', '来挑战一下2048游戏吧！', '试试点击🖼️按钮进入背景欣赏模式~', '点击🌄按钮可以换个美丽的背景哦~'];
             var text = texts[Math.floor(Math.random() * texts.length)];
             showMessage(text, 3000, true);
         });
@@ -583,10 +576,20 @@
     function init() {
         injectWaifuHTML();
         bindEvents();
-        resetToDefaultPosition();
-        initWelcomeMessage();
-        changeBackground();
-        initModel();
+
+        $(document).ready(function () {
+            // 重置到默认位置
+            resetToDefaultPosition();
+
+            // 设置初始鼠标样式
+            $('.waifu').css('cursor', 'url(static/assets/img/cursor-grab.svg) 16 16, grab');
+
+            // 初始化欢迎消息
+            initWelcomeMessage();
+            changeBackground();
+            // 初始化模型
+            initModel();
+        });
     }
 
     // 暴露公共API
