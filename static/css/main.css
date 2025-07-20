@@ -11,8 +11,6 @@ body {
     background-size: contain;
     background-attachment: fixed;
     background-repeat: center center;
-    overflow-y: auto;
-    overflow-x: auto;
     min-height: 100vh;
     /* 可爱的默认鼠标样式 */
     cursor: url('../assets/img/cursor-default.svg') 4 4, auto;
