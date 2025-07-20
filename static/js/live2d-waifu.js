@@ -285,14 +285,12 @@
 
     // 背景切换功能
     function changeBackground() {
-        // 添加时间戳参数强制刷新背景图片
-        // var timestamp = new Date().getTime();
-        // var newBgUrl = 'https://t.alcy.cc/moez?t=' + timestamp;
+        // 切换背景时添加滚动类
+        $('body').addClass('scroll-bg');
 
-        // 定义本地背景图片的路径数组
         var backgrounds = [
-            'static/assets/img/background1.png',
-            'static/assets/img/background2.png'
+            'static/assets/img/background1.jpg',
+            'static/assets/img/background2.jpg'
         ];
 
         // 随机选择一张背景图片
@@ -412,7 +410,7 @@
 
         // 鼠标交互
         $(document).on('mouseover', '#live2d', function () {
-            var texts = ['你好呀~', '欢迎来到我的世界！', '今天过得怎么样？', '按 B 键进入背景欣赏模式哦~', '想看美丽的背景吗？按 B 键试试！', '按 N 键可以切换背景图片呢~', '想要换个背景吗？试试按 N 键！', '按 T 键可以切换鼠标轨迹效果呢✨', '想玩游戏吗？点击我旁边的游戏按钮🎮', '点击🖼️按钮可以进入背景欣赏模式哦~', '点击🌄按钮可以换背景图片呢~'];
+            var texts = ['你好呀~', '欢迎来到我的世界！', '今天过得怎么样？', '按 B 键进入背景欣赏模式哦~', '想看美丽的背景吗？按 B 键试试！', '按 N 键可以切换背景图片呢~', '按 N 键可以查看我的b50哦~', '想要换个背景吗？试试按 N 键！', '按 T 键可以切换鼠标轨迹效果呢✨', '想玩游戏吗？点击我旁边的游戏按钮🎮', '点击🖼️按钮可以进入背景欣赏模式哦~', '点击🌄按钮可以换背景图片呢~'];
             var text = texts[Math.floor(Math.random() * texts.length)];
             showMessage(text, 3000);
         });
