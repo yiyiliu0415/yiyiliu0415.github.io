@@ -1,6 +1,6 @@
 ## **研究生阶段学术成果 (2024.09 – 至今)**
 
-一篇 Photonics Research 在投
+Liu, Yiyi, et al. Transmission-matrix-guided untrained neural network for projecting structured light through scattering media. *Optics and Lasers in Engineering* 196 (2026): 109448.
 
 
 
