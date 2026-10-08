@@ -291,13 +291,15 @@
 
         // 定义本地背景图片的路径数组
         var backgrounds = [
-            'static/assets/img/background1.png',
-            'static/assets/img/background2.png'
+            'static/assets/img/background1.jpg',
+            'static/assets/img/background2.jpg'
         ];
 
-        // 随机选择一张背景图片
-        var randomIndex = Math.floor(Math.random() * backgrounds.length);
-        var newBgUrl = backgrounds[randomIndex];
+        // 随机选择一张背景图片（避免与当前背景重复）
+        var newBgUrl = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+        if (backgrounds.length > 1 && $('body').css('background-image').indexOf(newBgUrl) !== -1) {
+            newBgUrl = backgrounds[(backgrounds.indexOf(newBgUrl) + 1) % backgrounds.length];
+        }
 
         $('body').css('background-image', 'url(' + newBgUrl + ')');
 

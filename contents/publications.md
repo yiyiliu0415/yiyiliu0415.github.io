@@ -1,6 +1,8 @@
 ## **研究生阶段学术成果 (2024.09 – 至今)**
 
-Liu, Yiyi, et al. Transmission-matrix-guided untrained neural network for projecting structured light through scattering media. *Optics and Lasers in Engineering* 196 (2026): 109448.
+Liu, Yiyi, et al. Transmission-matrix-guided untrained neural network for projecting structured light through scattering media. *Optics and Lasers in Engineering* 196 (2026): 109448. （SCI 二区，本人一作）
+
+Liu, Yiyi, et al. Programmable spectrum customization of pulse illumination via multi-dimensional wavefront shaping. *Optics Letters*. （SCI 二区，已投稿）
 
 
 
