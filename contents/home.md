@@ -1,6 +1,6 @@
 [![yiyiliu0415](https://img.shields.io/badge/github-yiyiliu0415-blue?logo=github)](https://github.com/yiyiliu0415) [![bilibili](https://img.shields.io/badge/bilibili-Ryou-ff69b4?logo=bilibili)](https://space.bilibili.com/19884685)
 
-我目前就读于华南师范大学光电科学与工程学院，是光学工程专业的一名硕士研究生（保送）。
+我目前就读于华南师范大学光电科学与工程学院，是光学工程专业的一名硕士研究生。主要研究方向为：波前整形、散射投影与散射聚焦。
 
 #### 联系方式  
 📧 yiyiliu@m.scnu.edu.cn
