@@ -331,35 +331,35 @@ footer{border-top:1px solid var(--rule);margin-top:20px;padding:26px 0 46px;font
           </div>
           <div class="role">项目负责人</div>
           <ul>
-            <li>负责光学投影系统的物理建模、仿真调试、光路搭建、系统部署与算法设计。</li>
-            <li>使用空间光调制器对投影图案进行空间相位整形，以传输矩阵建模散射行为，训练基于深度图像先验（DIP）的双分支无监督网络求解整形相位。</li>
-            <li>在采样率 γ=8、光学厚度 τ≈18 的漫射玻璃后方成功投影数字、细胞、条纹结构光等图案，投影质量相关系数 PCC &gt; 0.9，信噪比 &gt; 10 dB；成果发表于 <em>Optics and Lasers in Engineering</em>。</li>
+            <li><b>项目内容</b>　针对散射介质引起的光场畸变问题，基于散射介质传输矩阵研究波前整形与目标图案投影方法。</li>
+            <li><b>光学系统搭建</b>　自主完成 532 nm 激光光源、测量系统、SLM 及工业相机等器件的光路搭建，完成散射实验系统的整体部署与调试；使用 MATLAB 控制 SLM 与相机，结合 Python 与双分支无训练神经网络完成传输矩阵计算与相位掩膜生成，实现数据采集、处理、相位加载与投影验证的全流程自动化。</li>
+            <li><b>项目成果</b>　自主搭建完整光学实验系统，验证算法在强散射环境下的投影性能；在采样率 γ=8、光学厚度 τ≈18 的条件下，实现投影相关系数 PCC &gt; 0.9、信噪比 SNR &gt; 10 dB。相关成果已发表于 <em>Optics and Lasers in Engineering</em>。</li>
           </ul>
         </div>
 
         <div class="proj">
           <div class="proj-head">
-            <h4>通过非线性散射介质的倍频聚焦与投影</h4>
-            <span class="when">2025.10 – 2026.08</span>
+            <h4>非线性散射介质的倍频点聚焦</h4>
+            <span class="when">2025.10 – 2026.09</span>
           </div>
           <div class="role">项目负责人</div>
           <ul>
-            <li>推导非线性散射介质的矢量传输张量公式及其前向与逆向传输理论，建立可解释的闭合式波前整形理论。</li>
-            <li>使用干涉测量法同时测量线性传输矩阵与非线性传输张量，实现基频与倍频的同时聚焦与投影。</li>
-            <li>首次推导出矢量传输张量的统计性质与聚焦增强理论极限；在 γ=8、厚度 d≈80 μm 的铌酸锂散射颗粒后方实现倍频点聚焦与图案投影，峰值-背景比接近理论极限。成果已投稿 <em>Physical Review Letters</em>。</li>
+            <li><b>项目内容</b>　针对非线性散射介质中倍频聚焦的波前设计问题，建立矢量非线性传输张量的闭式解析理论，实现从目标倍频聚焦到入射波前的逆向设计。</li>
+            <li><b>光学系统搭建</b>　搭建基于 1064 nm 激光光源的非线性倍频实验光路，利用 SLM 调控入射波前，使光场通过铌酸锂散射颗粒介质产生倍频信号；搭建参考光路并实现参考光倍频，结合窄带滤波与干涉测量获取倍频光场信息，并结合 Gerchberg–Saxton 算法与 Autonne–Takagi 分解计算目标聚焦对应的入射相位。</li>
+            <li><b>项目成果</b>　首次推导出矢量传输张量的统计性质与聚焦增强理论极限；在采样率 γ=8、铌酸锂散射颗粒介质厚度 d≈80 μm 的条件下实现倍频点聚焦，聚焦峰值与背景强度比接近理论极限。</li>
           </ul>
         </div>
 
         <div class="proj">
           <div class="proj-head">
-            <h4>非线性光纤内超快脉冲的光谱聚焦与定制</h4>
+            <h4>非线性光纤超快脉冲的光谱聚焦与定制</h4>
             <span class="when">2025.09 – 2026.03</span>
           </div>
           <div class="role">项目第二负责人</div>
           <ul>
-            <li>使用 Waveshaper 对非线性光纤内的超快脉冲进行频谱相位整形，以分步傅里叶方法（SSFM）对非线性传播建模。</li>
-            <li>结合 Actor-Model 神经网络学习非线性光纤内的光谱演化过程，设计给定光谱所需的脉冲频谱相位。</li>
-            <li>实现任意定制光谱相关系数 PCC &gt; 0.92，光谱单峰聚焦增强因子 &gt; 58，双峰聚焦增强因子 &gt; 30；成果已投稿 <em>Optics Express</em>。</li>
+            <li><b>项目内容</b>　针对非线性光纤中超快脉冲的光谱调控问题，研究脉冲传播过程中的非线性效应，实现目标光谱定制化调控。</li>
+            <li><b>光学系统搭建</b>　利用 Waveshaper 对超快脉冲进行频谱相位整形，并结合 Actor-Model 神经网络学习光谱演化规律，设计满足目标光谱需求的输入频谱相位。</li>
+            <li><b>项目成果</b>　实现任意定制光谱相关系数 PCC &gt; 0.92，光谱单峰聚焦增强因子 &gt; 58，双峰聚焦增强因子 &gt; 30。</li>
           </ul>
         </div>
 
@@ -454,16 +454,16 @@ footer{border-top:1px solid var(--rule);margin-top:20px;padding:26px 0 46px;font
         <h2>专业技能 <small>Skills</small></h2>
         <div class="skills">
           <div class="skill-row">
-            <div class="k">散射成像与波前整形</div>
-            <div>熟悉基于传输矩阵 / 传输张量的散射成像与逆问题求解；具备仿真与在复杂光学环境中恢复图像、投影图案的能力。</div>
+            <div class="k">光学基础</div>
+            <div>掌握物理光学、信息光学、激光原理等专业知识，具备光学实验系统搭建、调试与数据分析经验。</div>
           </div>
           <div class="skill-row">
-            <div class="k">光学系统搭建</div>
-            <div>熟悉空间光调制器、Waveshaper、光纤、相机、探测器等器件的使用与调试，具备光路搭建与系统性能优化经验。</div>
+            <div class="k">算法与建模</div>
+            <div>熟悉波前整形、散射介质光场调控及非线性光场建模，具备数值仿真与算法设计经验。</div>
           </div>
           <div class="skill-row">
-            <div class="k">深度学习与图像处理</div>
-            <div>熟练使用 Python / PyTorch 设计深度学习算法，结合 OpenCV 解决图像恢复与投影问题；熟悉 PaddlePaddle 训练与 Paddle Lite 端侧部署。</div>
+            <div class="k">编程与深度学习</div>
+            <div>熟练使用 Python、MATLAB 进行数值计算；熟练掌握 PyTorch 与 OpenCV；熟悉 AI Agent 的使用。</div>
           </div>
         </div>
       </section>
