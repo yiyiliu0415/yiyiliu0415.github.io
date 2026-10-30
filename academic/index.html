@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刘懿逸 · Yiyi Liu</title>
+<meta name="description" content="刘懿逸（Yiyi Liu），华南师范大学光学工程硕士研究生，研究方向为波前整形、散射投影与散射介质成像。">
+<style>
+:root{
+  --paper:#fbfaf7;
+  --card:#ffffff;
+  --ink:#1c1c1e;
+  --ink-soft:#4a4a4f;
+  --ink-mute:#78787f;
+  --rule:#e4e0d8;
+  --accent:#14456b;
+  --accent-soft:#eef3f7;
+  --serif:"Noto Serif SC","Songti SC","Source Han Serif SC","SimSun",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(20,69,107,.25);transition:border-color .2s,color .2s}
+a:hover{border-bottom-color:var(--accent)}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(251,250,247,.88);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-inner{
+  max-width:1080px;margin:0 auto;padding:0 28px;
+  height:54px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand{font-family:var(--serif);font-size:15px;letter-spacing:.02em;border:none}
+.brand span{color:var(--ink-mute);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-left:8px}
+.topnav{display:flex;gap:22px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+.topnav a{border:none;color:var(--ink-mute)}
+.topnav a:hover{color:var(--accent)}
+@media(max-width:720px){.topnav{display:none}}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.layout{display:grid;grid-template-columns:250px 1fr;gap:56px;align-items:start}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:32px}}
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 44px;border-bottom:1px solid var(--rule);margin-bottom:52px}
+.hero-inner{display:flex;gap:32px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.hero h1{font-family:var(--serif);font-size:44px;line-height:1.2;font-weight:600;letter-spacing:.01em}
+.hero h1 em{font-style:normal;font-size:20px;color:var(--ink-mute);font-weight:400;letter-spacing:.06em;margin-left:14px;font-family:var(--sans)}
+.hero .role{margin-top:14px;font-size:16px;color:var(--ink-soft);font-family:var(--serif)}
+.hero .affil{margin-top:4px;font-size:14px;color:var(--ink-mute)}
+.links{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border:1px solid var(--rule);border-radius:999px;
+  font-size:12.5px;color:var(--ink-soft);background:var(--card);border-bottom:1px solid var(--rule);
+}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip svg{width:13px;height:13px;opacity:.7}
+.seal{
+  width:104px;height:104px;flex:0 0 auto;border-radius:50%;
+  border:1px solid var(--rule);background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:34px;color:var(--accent);letter-spacing:.04em;
+}
+@media(max-width:600px){.seal{display:none}.hero h1{font-size:34px}}
+
+/* ---------- sidebar ---------- */
+.side{position:sticky;top:86px}
+.side-block{margin-bottom:30px}
+.side h3{
+  font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-mute);margin-bottom:10px;font-weight:600;
+}
+.side p,.side li{font-size:13.5px;color:var(--ink-soft);line-height:1.75}
+.side ul{list-style:none}
+.side li{padding:3px 0;border-bottom:1px dashed var(--rule)}
+.side li:last-child{border-bottom:none}
+.side .k{color:var(--ink-mute);font-size:12.5px}
+@media(max-width:900px){.side{position:static}}
+
+/* ---------- main ---------- */
+section{margin-bottom:54px;scroll-margin-top:80px}
+h2{
+  font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:.02em;
+  padding-bottom:10px;margin-bottom:22px;border-bottom:1px solid var(--rule);
+  display:flex;align-items:baseline;gap:12px;
+}
+h2::before{content:"";width:16px;height:2px;background:var(--accent);display:inline-block;transform:translateY(-5px)}
+h2 small{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);font-weight:500}
+
+.lede{font-size:15.5px;color:var(--ink-soft);line-height:1.95;text-align:justify}
+.lede + .lede{margin-top:12px}
+
+/* interests */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-size:12.5px;padding:4px 11px;background:var(--accent-soft);color:var(--accent);border-radius:3px}
+
+/* publications */
+.pub{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid var(--rule)}
+.pub:last-child{border-bottom:none}
+.pub-year{font-family:var(--mono);font-size:12.5px;color:var(--ink-mute);padding-top:3px;flex:0 0 42px}
+.pub-title{font-size:15px;font-weight:600;line-height:1.65}
+.pub-title a{border-bottom:none}
+.pub-meta{margin-top:5px;font-size:13px;color:var(--ink-mute);font-style:italic}
+.badges{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:11px;padding:2px 8px;border-radius:2px;background:#f4f1ea;color:#6b5a3e;letter-spacing:.04em}
+.badge.blue{background:var(--accent-soft);color:var(--accent)}
+
+/* projects */
+.proj{padding:18px 0;border-bottom:1px solid var(--rule)}
+.proj:last-child{border-bottom:none}
+.proj-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.proj h4{font-family:var(--serif);font-size:16.5px;font-weight:600}
+.proj .when{font-family:var(--mono);font-size:12px;color:var(--ink-mute);white-space:nowrap}
+.proj .role{font-size:12.5px;color:var(--accent);margin-top:2px}
+.proj ul{margin:10px 0 0;padding-left:0;list-style:none}
+.proj li{font-size:14px;color:var(--ink-soft);padding-left:16px;position:relative;margin-bottom:5px;line-height:1.8}
+.proj li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border:1px solid var(--accent);border-radius:50%}
+
+/* timeline */
+.tl{position:relative;padding-left:20px}
+.tl::before{content:"";position:absolute;left:4px;top:6px;bottom:6px;width:1px;background:var(--rule)}
+.tl-item{position:relative;padding-bottom:22px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:"";position:absolute;left:-20px;top:8px;width:9px;height:9px;
+  border-radius:50%;background:var(--card);border:1.5px solid var(--accent);
+}
+.tl-when{font-family:var(--mono);font-size:12px;color:var(--ink-mute)}
+.tl-title{font-family:var(--serif);font-size:15.5px;font-weight:600;margin-top:2px}
+.tl-sub{font-size:13px;color:var(--ink-mute)}
+.tl-body{font-size:13.5px;color:var(--ink-soft);margin-top:6px}
+.tl-body ul{list-style:none;margin-top:4px}
+.tl-body li{padding-left:14px;position:relative;margin-bottom:3px}
+.tl-body li::before{content:"–";position:absolute;left:0;color:var(--ink-mute)}
+
+/* awards */
+.awards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px 18px;list-style:none}
+.awards li{font-size:13.5px;color:var(--ink-soft);display:flex;justify-content:space-between;border-bottom:1px dashed var(--rule);padding:5px 0}
+.awards li span{font-family:var(--mono);font-size:12px;color:var(--ink-mute)}
+
+/* skills */
+.skills{display:grid;gap:12px}
+.skill-row{display:grid;grid-template-columns:120px 1fr;gap:16px;font-size:13.5px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.skill-row:last-child{border-bottom:none}
+.skill-row .k{color:var(--ink-mute);font-size:12.5px;letter-spacing:.02em}
+@media(max-width:600px){.skill-row{grid-template-columns:1fr;gap:2px}}
+
+footer{border-top:1px solid var(--rule);margin-top:20px;padding:26px 0 46px;font-size:12.5px;color:var(--ink-mute);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media print{
+  .topbar,.seal{display:none}
+  body{background:#fff;font-size:11.5pt}
+  .layout{grid-template-columns:1fr}
+  .side{position:static}
+  section{break-inside:avoid}
+  a{color:#000;border:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">刘懿逸<span>Yiyi Liu</span></a>
+    <nav class="topnav">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#awards">Awards</a>
+      <a href="../">Interactive ↗</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <h1>刘懿逸<em>Yiyi Liu</em></h1>
+        <div class="role">华南师范大学 · 光学工程 硕士研究生</div>
+        <div class="affil">School of Optoelectronic Science and Engineering, South China Normal University</div>
+        <div class="links">
+          <a class="chip" href="mailto:yiyiliu@m.scnu.edu.cn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            yiyiliu@m.scnu.edu.cn
+          </a>
+          <a class="chip" href="https://github.com/yiyiliu0415" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.7 4.5 18.7 4.8 18.7 4.8c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5Z"/></svg>
+            yiyiliu0415
+          </a>
+          <a class="chip" href="https://orcid.org/0009-0006-2502-8503" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0ZM7.4 17.7H5.6V8.5h1.8v9.2ZM6.5 7.3a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2Zm11.4 10.4h-1.8v-4.9c0-1.3-.5-2.1-1.6-2.1-1.2 0-1.9.8-1.9 2.1v4.9H9.8V8.5h1.8v1.3c.4-.8 1.4-1.6 2.7-1.6 2 0 3.6 1.3 3.6 4v5.5Z"/></svg>
+            ORCID
+          </a>
+          <a class="chip" href="https://space.bilibili.com/19884685" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 4.6 15.9 2.7l-1.1 1.1 1.4 1.4H7.8l1.4-1.4-1.1-1.1-1.9 1.9H4a2.5 2.5 0 0 0-2.5 2.5v10A2.5 2.5 0 0 0 4 19.6h16a2.5 2.5 0 0 0 2.5-2.5v-10A2.5 2.5 0 0 0 20 4.6h-2.2ZM20 17.1H4V7.1h16v10Zm-11-6.2c-.7 0-1.2.6-1.2 1.3s.5 1.3 1.2 1.3 1.2-.6 1.2-1.3-.5-1.3-1.2-1.3Zm6 0c-.7 0-1.2.6-1.2 1.3s.5 1.3 1.2 1.3 1.2-.6 1.2-1.3-.5-1.3-1.2-1.3Z"/></svg>
+            Bilibili
+          </a>
+        </div>
+      </div>
+      <div class="seal" aria-hidden="true">逸</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="layout">
+
+    <!-- ================= sidebar ================= -->
+    <aside class="side">
+      <div class="side-block">
+        <h3>Contact</h3>
+        <ul>
+          <li><span class="k">Email</span><br>yiyiliu@m.scnu.edu.cn</li>
+          <li><span class="k">Location</span><br>广州市 · 华南师范大学</li>
+          <li><span class="k">ORCID</span><br>0009-0006-2502-8503</li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <h3>Education</h3>
+        <ul>
+          <li>
+            <strong>华南师范大学</strong>（211）<br>
+            光学工程 · 硕士<br>
+            <span class="k">2024.09 – 2027.06（保送）</span>
+          </li>
+          <li>
+            <strong>华南师范大学</strong>（211）<br>
+            光电信息科学与工程 · 学士<br>
+            <span class="k">2020.09 – 2024.06</span>
+          </li>
+          <li><span class="k">GPA 3.78 / 5.00 · 专业排名 10 / 124</span></li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <h3>Languages</h3>
+        <ul>
+          <li>英语 CET-6（507）/ CET-4（570）</li>
+          <li>日语 JLPT N3</li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <h3>Tools</h3>
+        <ul>
+          <li>Python · PyTorch · PaddlePaddle</li>
+          <li>Matlab · OpenCV · NumPy · Scikit-learn</li>
+          <li>Git · GitHub · Zemax · LabVIEW</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- ================= main ================= -->
+    <main>
+
+      <section id="research">
+        <h2>研究方向 <small>Research</small></h2>
+        <p class="lede">
+          以<strong>波前整形与散射投影</strong>为主要研究方向，重点研究复杂散射环境中的波前调控与图案投影，
+          并结合深度学习求解散射逆问题；<strong>散射介质成像</strong>（基于传输矩阵 / 传输张量的建模与逆问题求解）
+          为次要研究方向，同时了解生物组织成像与单像素成像。
+        </p>
+        <div class="tags">
+          <span class="tag">波前整形 Wavefront Shaping</span>
+          <span class="tag">散射投影 Structured Light Projection</span>
+          <span class="tag">传输矩阵 Transmission Matrix</span>
+          <span class="tag">散射介质成像</span>
+          <span class="tag">深度学习求解逆问题</span>
+          <span class="tag">非线性散射</span>
+        </div>
+      </section>
+
+      <section id="publications">
+        <h2>学术论文 <small>Publications</small></h2>
+
+        <div class="pub">
+          <div class="pub-year">2026</div>
+          <div>
+            <div class="pub-title">
+              <a href="https://github.com/yiyiliu0415/TMG-NNet" target="_blank" rel="noopener">
+                Transmission-matrix-guided untrained neural network for projecting structured light
+                through scattering media
+              </a>
+            </div>
+            <div class="pub-meta">Liu Y. et al. · <em>Optics and Lasers in Engineering</em> 196 (2026) 109448</div>
+            <div class="badges">
+              <span class="badge blue">第一作者</span>
+              <span class="badge">SCI 二区</span>
+              <span class="badge">代码开源</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub">
+          <div class="pub-year">2026</div>
+          <div>
+            <div class="pub-title">Programmable spectrum customization of pulse illumination via multi-dimensional wavefront shaping</div>
+            <div class="pub-meta">Liu Y. et al. · <em>Optics Express</em></div>
+            <div class="badges">
+              <span class="badge">SCI 二区</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>科研项目 <small>Projects</small></h2>
+
+        <div class="proj">
+          <div class="proj-head">
+            <h4>对抗强散射环境的光学投影系统</h4>
+            <span class="when">2024.09 – 2025.03</span>
+          </div>
+          <div class="role">项目负责人</div>
+          <ul>
+            <li>负责光学投影系统的物理建模、仿真调试、光路搭建、系统部署与算法设计。</li>
+            <li>使用空间光调制器对投影图案进行空间相位整形，以传输矩阵建模散射行为，训练基于深度图像先验（DIP）的双分支无监督网络求解整形相位。</li>
+            <li>在采样率 γ=8、光学厚度 τ≈18 的漫射玻璃后方成功投影数字、细胞、条纹结构光等图案，投影质量相关系数 PCC &gt; 0.9，信噪比 &gt; 10 dB；成果发表于 <em>Optics and Lasers in Engineering</em>。</li>
+          </ul>
+        </div>
+
+        <div class="proj">
+          <div class="proj-head">
+            <h4>通过非线性散射介质的倍频聚焦与投影</h4>
+            <span class="when">2025.10 – 2026.08</span>
+          </div>
+          <div class="role">项目负责人</div>
+          <ul>
+            <li>推导非线性散射介质的矢量传输张量公式及其前向与逆向传输理论，建立可解释的闭合式波前整形理论。</li>
+            <li>使用干涉测量法同时测量线性传输矩阵与非线性传输张量，实现基频与倍频的同时聚焦与投影。</li>
+            <li>首次推导出矢量传输张量的统计性质与聚焦增强理论极限；在 γ=8、厚度 d≈80 μm 的铌酸锂散射颗粒后方实现倍频点聚焦与图案投影，峰值-背景比接近理论极限。成果已投稿 <em>Physical Review Letters</em>。</li>
+          </ul>
+        </div>
+
+        <div class="proj">
+          <div class="proj-head">
+            <h4>非线性光纤内超快脉冲的光谱聚焦与定制</h4>
+            <span class="when">2025.09 – 2026.03</span>
+          </div>
+          <div class="role">项目第二负责人</div>
+          <ul>
+            <li>使用 Waveshaper 对非线性光纤内的超快脉冲进行频谱相位整形，以分步傅里叶方法（SSFM）对非线性传播建模。</li>
+            <li>结合 Actor-Model 神经网络学习非线性光纤内的光谱演化过程，设计给定光谱所需的脉冲频谱相位。</li>
+            <li>实现任意定制光谱相关系数 PCC &gt; 0.92，光谱单峰聚焦增强因子 &gt; 58，双峰聚焦增强因子 &gt; 30；成果已投稿 <em>Optics Express</em>。</li>
+          </ul>
+        </div>
+
+        <div class="proj">
+          <div class="proj-head">
+            <h4>虚实场景融合的人工智能课程教学系统</h4>
+            <span class="when">2021.10 – 2023.04</span>
+          </div>
+          <div class="role">华南师范大学学生创新训练项目 · 优秀结题</div>
+        </div>
+
+        <div class="proj">
+          <div class="proj-head">
+            <h4>基于虚实场景融合的中小学人工智能课程自适应学习系统研发</h4>
+            <span class="when">2022.05 – 2023.04</span>
+          </div>
+          <div class="role">华南师范大学学生课外科研一般课题 · 优秀结题</div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h2>经历 <small>Experience</small></h2>
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-when">2021.09 – 2023.06</div>
+            <div class="tl-title">算法案例开发实习生</div>
+            <div class="tl-sub">华光人工智能教育机器人创新团队</div>
+            <div class="tl-body">
+              为 K12 人工智能教育的图形化编程软件开发编程块底层 Python 库，并部署到以树莓派为核心的机器人中。
+              <ul>
+                <li>利用光电传感器开发控制机器人视觉、语音等功能的案例。</li>
+                <li>设计轻量化深度学习模型，提升推理速度并实时部署至树莓派。</li>
+                <li>协助团队在 2022–2023 年申请五项专利，其中四项已授权。</li>
+              </ul>
+              <div style="margin-top:6px;font-size:12.5px">
+                相关仓库：<a href="https://github.com/HuaGuangEdu/control_scnu" target="_blank" rel="noopener">control_scnu</a> ·
+                <a href="https://github.com/HuaGuangEdu/blocklyFiles" target="_blank" rel="noopener">blocklyFiles</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-when">2022.08</div>
+            <div class="tl-title">全国大学生光电设计大赛</div>
+            <div class="tl-sub">省赛一等奖 · 国赛二等奖</div>
+            <div class="tl-body">负责图像处理算法与光电传感器的设计。</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-when">2022.08</div>
+            <div class="tl-title">广东省大学生电子设计竞赛</div>
+            <div class="tl-sub">省级二等奖</div>
+            <div class="tl-body">
+              负责 AI 足球门线技术算法设计。
+              <a href="https://github.com/yiyiliu0415/Goal-line-technology" target="_blank" rel="noopener">项目地址 ↗</a>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-when">2022.06</div>
+            <div class="tl-title">Holtek MCU Design 竞赛（「合泰杯」）</div>
+            <div class="tl-sub">省级三等奖</div>
+            <div class="tl-body">
+              负责手术刀追踪算法与拍摄臂控制算法设计。
+              <a href="https://github.com/yiyiliu0415/2022HeTai" target="_blank" rel="noopener">项目地址 ↗</a>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-when">2021.05 / 2022.05</div>
+            <div class="tl-title">华南师范大学人工智能大赛（第二、三届）</div>
+            <div class="tl-sub">校级三等奖 ×2</div>
+            <div class="tl-body">分别负责菜品图像分类算法与 NLP 文本分类算法设计。</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="awards">
+        <h2>荣誉奖励 <small>Awards</small></h2>
+        <ul class="awards">
+          <li>校一等学业奖学金 <span>2021</span></li>
+          <li>校一等学业奖学金 <span>2022</span></li>
+          <li>校二等创新奖学金 <span>2022</span></li>
+          <li>校二等创新奖学金 <span>2023</span></li>
+          <li>校一等学业奖学金 <span>2024</span></li>
+          <li>校三等学业奖学金 <span>2025</span></li>
+          <li>校一等学业奖学金 <span>2026</span></li>
+        </ul>
+      </section>
+
+      <section id="skills">
+        <h2>专业技能 <small>Skills</small></h2>
+        <div class="skills">
+          <div class="skill-row">
+            <div class="k">散射成像与波前整形</div>
+            <div>熟悉基于传输矩阵 / 传输张量的散射成像与逆问题求解；具备仿真与在复杂光学环境中恢复图像、投影图案的能力。</div>
+          </div>
+          <div class="skill-row">
+            <div class="k">光学系统搭建</div>
+            <div>熟悉空间光调制器、Waveshaper、光纤、相机、探测器等器件的使用与调试，具备光路搭建与系统性能优化经验。</div>
+          </div>
+          <div class="skill-row">
+            <div class="k">深度学习与图像处理</div>
+            <div>熟练使用 Python / PyTorch 设计深度学习算法，结合 OpenCV 解决图像恢复与投影问题；熟悉 PaddlePaddle 训练与 Paddle Lite 端侧部署。</div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>© 刘懿逸 Yiyi Liu 2020–2026</div>
+        <div><a href="../">← 返回互动版主页</a></div>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+</body>
+</html>
