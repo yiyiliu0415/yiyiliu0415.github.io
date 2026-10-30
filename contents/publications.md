@@ -2,7 +2,7 @@
 
 Transmission-matrix-guided untrained neural network for projecting structured light through scattering media. *Optics and Lasers in Engineering* 196 (2026): 109448. （SCI 二区，本人一作）
 
-Programmable spectrum customization of pulse illumination via multi-dimensional wavefront shaping. *Optics Express*. （SCI 二区）
+Programmable spectrum customization of pulse illumination via multi-dimensional wavefront shaping. [*Optics Letters*](https://doi.org/10.1364/OL.580817) 51 (2026): 945. （SCI 二区）
 
 
 
